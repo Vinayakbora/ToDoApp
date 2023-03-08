@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ToDoApp</string>
+    <string name="to_do_app">To-Do Application</string>
+    <string name="work_under_progress">Work Under Progress</string>
+    <string name="your_name">Name</string>
+    <string name="signup_image">SignUp Image</string>
+    <string name="contact_number">Contact Number</string>
+    <string name="d_o_b">Date Of Birth</string>
+    <string name="sign_in">Sign In</string>
+    <string name="log_out">Log Out</string>
+</resources>
