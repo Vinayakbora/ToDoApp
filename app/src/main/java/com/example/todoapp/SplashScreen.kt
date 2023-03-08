@@ -27,7 +27,7 @@ class SplashScreen : AppCompatActivity() {
                 finish()
             }
             else{
-                intent = Intent(this, SignUpActivity::class.java)
+                intent = Intent(this, SigningUpActivity::class.java)
                 startActivity(intent)
                 finish()
             }

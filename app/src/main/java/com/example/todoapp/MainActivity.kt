@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
 
         logoutBtn.setOnClickListener{
             loginStatus.deleteData()
-            val intent = Intent(this, SignUpActivity::class.java)
+            val intent = Intent(this, SigningUpActivity::class.java)
             startActivity(intent)
             finish()
         }

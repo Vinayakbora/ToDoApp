@@ -7,10 +7,14 @@ import android.widget.Button
 import android.widget.EditText
 import java.util.*
 
-class SignUpActivity : AppCompatActivity() {
+class SigningUpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_up)
+        setContentView(R.layout.activity_signing_up)
+
+        if (supportActionBar != null) {
+            supportActionBar!!.hide()
+        }
 
         val button = findViewById<Button>(R.id.signInButton)
         val nameText = findViewById<EditText>(R.id.nameText)
@@ -37,8 +41,9 @@ class SignUpActivity : AppCompatActivity() {
         }
 
         button.setOnClickListener{
-            validation.validatePhone(numberText.text.toString())
-            validation.validateName(nameText.text.toString())
+            validation.validateName(nameText.text.toString(),nameText)
+            validation.validatePhone(numberText.text.toString(),numberText)
+            validation.validateDOB(dobText.text.toString(),dobText)
         }
     }
 }
