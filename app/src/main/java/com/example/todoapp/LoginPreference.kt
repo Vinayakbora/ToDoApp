@@ -8,6 +8,7 @@ import androidx.core.content.edit
 class LoginPreference(context: Context) {
 
     private val loginStatus = "loginFlag"
+    private val userName = "username"
     private val context: Context
     private val sharedPrefs: SharedPreferences
 
@@ -21,9 +22,17 @@ class LoginPreference(context: Context) {
             putBoolean(loginStatus, true)
         }
     }
-
     fun getLoginStatus(): Boolean{
         return sharedPrefs.getBoolean(loginStatus,false)
+    }
+
+    fun saveName(name:String) {
+        sharedPrefs.edit{
+            putString(userName, name)
+        }
+    }
+    fun getName(): String {
+        return sharedPrefs.getString(userName, "") ?: ""
     }
 
     fun deleteData(){

@@ -26,6 +26,7 @@ class FormValidation(ctx: Context) {
             if (Pattern.matches(nameRegex, name)) {
                 nameFlag++
                 checkValidation()
+                loginStatus.saveName(name)
             } else {
                 value.error = "Please enter a valid Name"
             }

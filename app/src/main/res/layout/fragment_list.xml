@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/light"
+    android:layout_height="match_parent"
+    tools:context=".ListFragment">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/title"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginStart="20dp"
+        android:autofillHints=""
+        android:background="@color/light"
+        android:inputType="text"
+        android:textColorHint="#000000">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/titleText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:hint="@string/title"
+            android:textCursorDrawable="@color/black" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/description"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="360dp"
+        android:layout_height="300dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="106dp"
+        android:background="@color/light"
+        android:textColorHint="#000000"
+        android:autofillHints="">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/descriptionText"
+            android:layout_width="360dp"
+            android:layout_height="295dp"
+            android:gravity="top"
+            android:hint="@string/description"
+            android:textColor="@color/black"
+            android:textCursorDrawable="@color/black"
+            android:inputType="text"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageView
+        android:id="@+id/doneBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="320dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/done" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/date_of_completion"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="550dp"
+        android:layout_marginEnd="104dp"
+        android:background="@color/light"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/numberText1"
+        android:textColorHint="#000000"
+        android:autofillHints=""
+        android:inputType="date">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/date_of_completion_text"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/task_completion_date"
+            android:gravity="center_horizontal"
+            android:textColor="@color/black"
+            android:drawableLeft="@drawable/calenders"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:textCursorDrawable="@color/black" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+</FrameLayout>

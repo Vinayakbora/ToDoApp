@@ -26,9 +26,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="195dp"
         android:layout_marginTop="50dp"
-        android:layout_marginEnd="196dp"
         android:autofillHints=""
         android:background="@color/light"
         android:inputType="text"
@@ -39,9 +37,11 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/nameText"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:drawableLeft="@drawable/users"
             android:gravity="center_horizontal"
+            android:textColor="@color/black"
             android:hint="@string/your_name"
             android:textCursorDrawable="@color/black" />
 
@@ -68,7 +68,9 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:hint="@string/contact_number"
+            android:textColor="@color/black"
             android:gravity="center_horizontal"
+            android:drawableLeft="@drawable/phone"
             android:textCursorDrawable="@color/black"
             android:inputType="phone"/>
 
@@ -97,6 +99,8 @@
             android:layout_height="wrap_content"
             android:hint="@string/d_o_b"
             android:gravity="center_horizontal"
+            android:textColor="@color/black"
+            android:drawableLeft="@drawable/calenders"
             android:clickable="false"
             android:cursorVisible="false"
             android:focusable="false"

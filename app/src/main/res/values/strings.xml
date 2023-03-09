@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">ToDoApp</string>
-    <string name="to_do_app">To-Do Application</string>
+    <string name="app_name">VISION</string>
     <string name="work_under_progress">Work Under Progress</string>
     <string name="your_name">Name</string>
     <string name="signup_image">SignUp Image</string>
@@ -8,4 +7,13 @@
     <string name="d_o_b">Date Of Birth</string>
     <string name="sign_in">Sign In</string>
     <string name="log_out">Log Out</string>
+    <string name="splash_image">Splash Image</string>
+    <string name="productivity_starts_with_a_plan">Productivity starts with a plan</string>
+    <string name="add_checklist">Add Checklist</string>
+    <string name="add_new_task_dialog_title">Add New Task</string>
+    <string name="save">Save</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="task_completion_date">Completion Date</string>
+    <string name="item">Item</string>
 </resources>
