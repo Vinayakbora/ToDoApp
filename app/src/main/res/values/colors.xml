@@ -9,4 +9,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="iris">#2D1674</color>
     <color name="light">#D4F1F4</color>
+    <color name="lime_green">#32CD30</color>
+    <color name="navy_blue">#05445E</color>
+    <color name="blue_grotto">#189AB4</color>
+    <color name="blue_green">#75E6DA</color>
 </resources>

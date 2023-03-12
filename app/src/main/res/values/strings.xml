@@ -8,7 +8,7 @@
     <string name="sign_in">Sign In</string>
     <string name="log_out">Log Out</string>
     <string name="splash_image">Splash Image</string>
-    <string name="productivity_starts_with_a_plan">Productivity starts with a plan</string>
+    <string name="productivity_starts_with_a_plan">Productivity starts with a vision</string>
     <string name="add_checklist">Add Checklist</string>
     <string name="add_new_task_dialog_title">Add New Task</string>
     <string name="save">Save</string>
@@ -22,4 +22,8 @@
     <string name="finish">Finish</string>
     <string name="edit_button">Edit Button</string>
     <string name="delete_button">Delete Button</string>
+    <string name="tick">tick</string>
+    <string name="filter">filter</string>
+    <string name="circle">circle</string>
+    <string name="done_button">Done Button</string>
 </resources>

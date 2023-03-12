@@ -8,7 +8,7 @@
 
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/appTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="176dp"
@@ -24,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/splashScreenImage"
         android:layout_width="275dp"
         android:layout_height="400dp"
         android:layout_marginStart="42dp"
@@ -45,10 +45,35 @@
         android:layout_marginEnd="177dp"
         android:text="@string/productivity_starts_with_a_plan"
         android:textColor="@color/iris"
+        android:visibility="gone"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/appTitle" />
+
+    <ImageView
+        android:id="@+id/circle_center"
+        android:layout_width="106dp"
+        android:layout_height="104dp"
+        android:layout_marginBottom="200dp"
+        android:contentDescription="@string/circle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.606"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/baseline_circle_24" />
+
+        <ImageView
+        android:id="@+id/tick"
+        android:layout_width="89dp"
+        android:layout_height="76dp"
+        android:layout_marginBottom="224dp"
+        android:contentDescription="@string/tick"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.649"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/done_tick" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

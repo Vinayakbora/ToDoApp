@@ -22,7 +22,6 @@ class ViewPagerActivity : AppCompatActivity() {
 
 
         imageList = ArrayList()
-        imageList = imageList + R.drawable.yellow
         imageList = imageList + R.drawable.red
         imageList = imageList + R.drawable.blue
         imageList = imageList + R.drawable.green
