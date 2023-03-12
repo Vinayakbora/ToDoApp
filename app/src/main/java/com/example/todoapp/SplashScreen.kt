@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.WindowManager
 
 class SplashScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,11 +12,6 @@ class SplashScreen : AppCompatActivity() {
         setContentView(R.layout.splash_screen)
 
         val loginStatus = LoginPreference(this).getLoginStatus()
-
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
 
         Handler(Looper.getMainLooper()).postDelayed({
             val intent: Intent
@@ -27,7 +21,7 @@ class SplashScreen : AppCompatActivity() {
                 finish()
             }
             else{
-                intent = Intent(this, SigningUpActivity::class.java)
+                intent = Intent(this, ViewPagerActivity::class.java)
                 startActivity(intent)
                 finish()
             }

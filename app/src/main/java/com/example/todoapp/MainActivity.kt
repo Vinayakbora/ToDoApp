@@ -1,11 +1,11 @@
 package com.example.todoapp
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -13,50 +13,74 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 class MainActivity : AppCompatActivity(), ListFragment.NewTaskListener {
 
     private lateinit var mAddFab: FloatingActionButton
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var logoutBtn: Button
+    private lateinit var myAdapter: CustomAdapter
+    private var myList: ArrayList<ListViewModel> = arrayListOf()
+    private var backPressedTime: Long = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         mAddFab = findViewById(R.id.add_fab)
-        val logoutBtn: Button = findViewById(R.id.logoutBtn)
+        logoutBtn = findViewById(R.id.logoutBtn)
         val loginStatus = LoginPreference(this)
-        val title = loginStatus.getName()
+        val titleActionBar = loginStatus.getName()
 
-        val recyclerview: RecyclerView = findViewById(R.id.recyclerView)
-        recyclerview.layoutManager = LinearLayoutManager(this)
+        recyclerView = findViewById(R.id.recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
-        val data = ArrayList<ListViewModel>()
+        myAdapter = CustomAdapter(myList)
+        recyclerView.adapter = myAdapter
 
-        for (i in 1..20) {
-            data.add(ListViewModel("Item $i"))
-        }
+        myAdapter.notifyItemInserted(myList.size-1)
+        supportActionBar?.title = titleActionBar
 
-        val adapter = CustomAdapter(data)
-
-        recyclerview.adapter = adapter
-
-        supportActionBar?.title = title
-
-        logoutBtn.setOnClickListener{
+        logoutBtn.setOnClickListener {
             loginStatus.deleteData()
             val intent = Intent(this, SigningUpActivity::class.java)
             startActivity(intent)
             finish()
         }
 
-        val first = ListFragment()
-
-        mAddFab.setOnClickListener{
-            logoutBtn.visibility = View.GONE
-            mAddFab.visibility= View.GONE
-            recyclerview.visibility = View.GONE
-            supportFragmentManager.beginTransaction().apply {
-                replace(R.id.fragment_container, first)
-                commit()
+        mAddFab.setOnClickListener {
+            toggleUI(1)
+            supportFragmentManager.beginTransaction()
+                .add(R.id.fragment_container, ListFragment::class.java, null).addToBackStack(null)
+                .commit()
+        }
+    }
+    fun toggleUI(mode: Int){
+        when(mode){
+            1->{
+                logoutBtn.visibility = View.GONE
+                mAddFab.visibility = View.GONE
+                recyclerView.visibility = View.GONE
+            }
+            2->{
+                logoutBtn.visibility = View.VISIBLE
+                mAddFab.visibility = View.VISIBLE
+                recyclerView.visibility = View.VISIBLE
+            }
+            else -> {
+                //Do nothing
             }
         }
     }
     override fun onNewTask(task: Task) {
-        Log.d("VVV", "Value of TextView: ${task.title}")
+        myList.add(ListViewModel("${task.title}","${task.desc}","${task.date}"))
+        myAdapter.notifyItemInserted(myList.size-1)
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
+        if (backPressedTime + 3000 > System.currentTimeMillis()) {
+            super.getOnBackPressedDispatcher()
+            finish()
+        } else {
+            Toast.makeText(this, "Press back again to leave the app.", Toast.LENGTH_LONG).show()
+        }
+        backPressedTime = System.currentTimeMillis()
     }
 }

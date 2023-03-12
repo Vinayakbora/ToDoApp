@@ -1,7 +1,7 @@
 package com.example.todoapp
 
-
-class Task(
+data class Task(
     var title: String? = null,
-    var description: String? = null
+    var desc: String? = null,
+    var date: String? = null
 )
