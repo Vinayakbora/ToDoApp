@@ -1,10 +1,12 @@
-package com.example.todoapp
+package com.example.todoapp.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import androidx.viewpager.widget.ViewPager
+import com.example.todoapp.R
+import com.example.todoapp.adapter.ViewPagerAdapter
 
 class ViewPagerActivity : AppCompatActivity() {
 

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light"
-    tools:context=".SigningUpActivity">
+    tools:context=".ui.SigningUpActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -39,7 +39,7 @@
             android:id="@+id/nameText"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:drawableLeft="@drawable/users"
+            android:drawableStart="@drawable/users"
             android:gravity="center_horizontal"
             android:textColor="@color/black"
             android:hint="@string/your_name"
@@ -70,7 +70,7 @@
             android:hint="@string/contact_number"
             android:textColor="@color/black"
             android:gravity="center_horizontal"
-            android:drawableLeft="@drawable/phone"
+            android:drawableStart="@drawable/phone"
             android:textCursorDrawable="@color/black"
             android:inputType="phone"/>
 
@@ -100,7 +100,7 @@
             android:hint="@string/d_o_b"
             android:gravity="center_horizontal"
             android:textColor="@color/black"
-            android:drawableLeft="@drawable/calenders"
+            android:drawableStart="@drawable/calenders"
             android:clickable="false"
             android:cursorVisible="false"
             android:focusable="false"

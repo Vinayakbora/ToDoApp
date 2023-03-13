@@ -26,4 +26,6 @@
     <string name="filter">filter</string>
     <string name="circle">circle</string>
     <string name="done_button">Done Button</string>
+    <string name="logout">Logout</string>
+    <string name="username">Username</string>
 </resources>

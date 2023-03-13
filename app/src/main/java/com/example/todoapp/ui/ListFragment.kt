@@ -1,4 +1,4 @@
-package com.example.todoapp
+package com.example.todoapp.ui
 
 import android.app.Activity
 import android.app.DatePickerDialog
@@ -12,6 +12,10 @@ import android.widget.EditText
 import android.widget.ImageView
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import com.example.todoapp.R
+import com.example.todoapp.data.ListViewModel
+import com.example.todoapp.utils.UIMode
+import com.example.todoapp.data.Task
 import java.util.*
 
 
@@ -34,7 +38,7 @@ class ListFragment : Fragment() {
             override fun handleOnBackPressed() {
                 parentFragmentManager.findFragmentById(R.id.fragment_container)
             ?.let { it1 -> parentFragmentManager.beginTransaction().remove(it1).commit() }
-                (activity as MainActivity).toggleUI(2)
+                (activity as MainActivity).toggleUI(UIMode.MODE_2)
             }
         })
     }
@@ -44,9 +48,9 @@ class ListFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_list, container, false)
 
-        val docText = view.findViewById<EditText>(R.id.date_of_completion_text)
         val titleText = view.findViewById<EditText>(R.id.titleText)
         val descText = view.findViewById<EditText>(R.id.descriptionText)
+        val docText = view.findViewById<EditText>(R.id.date_of_completion_text)
         val doneBtn = view.findViewById<ImageView>(R.id.doneBtn)
 
         docText.setOnClickListener{
@@ -75,6 +79,14 @@ class ListFragment : Fragment() {
             listener?.onNewTask(task = Task(title,desc,date))
             activity?.onBackPressedDispatcher?.onBackPressed()
         }
+
+        val viewModel = arguments?.getParcelable<ListViewModel>("item")
+        if (viewModel != null) {
+            titleText.setText(viewModel.title)
+            descText.setText(viewModel.desc)
+            docText.setText(viewModel.date)
+        }
+
         return view
     }
 

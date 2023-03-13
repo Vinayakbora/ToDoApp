@@ -1,4 +1,4 @@
-package com.example.todoapp
+package com.example.todoapp.data
 
 data class Task(
     var title: String? = null,

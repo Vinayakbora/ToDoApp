@@ -1,4 +1,4 @@
-package com.example.todoapp
+package com.example.todoapp.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.viewpager.widget.PagerAdapter
+import com.example.todoapp.R
 import java.util.*
 
 class ViewPagerAdapter(val context: Context, private val imageList: List<Int>) : PagerAdapter() {
