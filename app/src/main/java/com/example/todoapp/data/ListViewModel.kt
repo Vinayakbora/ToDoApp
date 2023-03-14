@@ -4,7 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 import androidx.lifecycle.ViewModel
 
-data class ListViewModel(val title: String, val desc: String, val date: String) : ViewModel(), Parcelable {
+data class ListViewModel(var title: String, var desc: String, var date: String) : ViewModel(), Parcelable {
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(title)
         parcel.writeString(desc)

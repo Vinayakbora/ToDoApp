@@ -15,13 +15,13 @@ import androidx.fragment.app.Fragment
 import com.example.todoapp.R
 import com.example.todoapp.data.ListViewModel
 import com.example.todoapp.utils.UIMode
-import com.example.todoapp.data.Task
 import java.util.*
 
-
-class ListFragment : Fragment() {
+class TaskFragment : Fragment() {
 
     private var listener: NewTaskListener? = null
+    private var modeEditing = false
+    private var editingPos: Int? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -37,11 +37,12 @@ class ListFragment : Fragment() {
         activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 parentFragmentManager.findFragmentById(R.id.fragment_container)
-            ?.let { it1 -> parentFragmentManager.beginTransaction().remove(it1).commit() }
+                    ?.let { it1 -> parentFragmentManager.beginTransaction().remove(it1).commit() }
                 (activity as MainActivity).toggleUI(UIMode.MODE_2)
             }
         })
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -53,13 +54,14 @@ class ListFragment : Fragment() {
         val docText = view.findViewById<EditText>(R.id.date_of_completion_text)
         val doneBtn = view.findViewById<ImageView>(R.id.doneBtn)
 
-        docText.setOnClickListener{
+        docText.setOnClickListener {
             val c = Calendar.getInstance()
             val year = c.get(Calendar.YEAR)
             val month = c.get(Calendar.MONTH)
             val day = c.get(Calendar.DAY_OF_MONTH)
 
-            val datePickerDialog = DatePickerDialog(requireContext(),
+            val datePickerDialog = DatePickerDialog(
+                requireContext(),
                 { _, birthYear, monthOfYear, dayOfMonth ->
                     val dat = (dayOfMonth.toString() + "-" + (monthOfYear + 1) + "-" + birthYear)
                     docText.setText(dat)
@@ -70,18 +72,25 @@ class ListFragment : Fragment() {
             datePickerDialog.show()
         }
 
-        doneBtn.setOnClickListener{
+        doneBtn.setOnClickListener {
             val title = titleText.text.toString()
             val desc = descText.text.toString()
             val date = docText.text.toString()
-            val imm: InputMethodManager = requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+            val imm: InputMethodManager =
+                requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(doneBtn.windowToken, 0)
-            listener?.onNewTask(task = Task(title,desc,date))
+            if (modeEditing) {
+                editingPos?.let { pos -> listener?.onEditTask(ListViewModel(title, desc, date), pos) }
+            }
+            else
+                listener?.onNewTask(task = ListViewModel(title, desc, date))
             activity?.onBackPressedDispatcher?.onBackPressed()
         }
 
         val viewModel = arguments?.getParcelable<ListViewModel>("item")
+        editingPos = arguments?.getInt("itemPos")
         if (viewModel != null) {
+            modeEditing = true
             titleText.setText(viewModel.title)
             descText.setText(viewModel.desc)
             docText.setText(viewModel.date)
@@ -90,8 +99,9 @@ class ListFragment : Fragment() {
         return view
     }
 
-    interface NewTaskListener{
-        fun onNewTask(task: Task)
+    interface NewTaskListener {
+        fun onNewTask(task: ListViewModel)
+        fun onEditTask(task: ListViewModel, pos: Int)
     }
 
 }

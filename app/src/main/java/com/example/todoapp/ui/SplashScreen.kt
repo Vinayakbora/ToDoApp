@@ -1,6 +1,5 @@
 package com.example.todoapp.ui
 
-import android.animation.ValueAnimator
 import android.content.Intent
 import android.graphics.drawable.AnimatedVectorDrawable
 import androidx.appcompat.app.AppCompatActivity
@@ -19,7 +18,7 @@ class SplashScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.splash_screen)
 
-        val title = findViewById<TextView>(R.id.appTitle)
+//        val title = findViewById<TextView>(R.id.appTitle)
         val subHeading = findViewById<TextView>(R.id.subheading)
         val tick = findViewById<ImageView>(R.id.tick)
         val loginStatus = LoginPreference(this).getLoginStatus()
@@ -33,18 +32,18 @@ class SplashScreen : AppCompatActivity() {
             val avd = AppCompatResources.getDrawable(this, R.drawable.done_tick) as AnimatedVectorDrawable
             tick.setImageDrawable(avd)
             avd.start()
-        }, 6500)
+        }, 4200)
 
-        handler.postDelayed({
-            val animator = ValueAnimator.ofFloat(0.0f, 1.0f)
-            animator.duration = 1500
-            animator.repeatCount = 2
-            animator.addUpdateListener { valueAnimator ->
-                val alpha = valueAnimator.animatedValue as Float
-                title.alpha = alpha
-            }
-            animator.start()
-        }, 4000)
+//        handler.postDelayed({
+//            val animator = ValueAnimator.ofFloat(0.0f, 1.0f)
+//            animator.duration = 1500
+//            animator.repeatCount = 2
+//            animator.addUpdateListener { valueAnimator ->
+//                val alpha = valueAnimator.animatedValue as Float
+//                title.alpha = alpha
+//            }
+//            animator.start()
+//        }, 4000)
 
         fun TextView.animateText(text: String) {
             var i = 0
@@ -74,6 +73,6 @@ class SplashScreen : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             }
-        }, 6800)
+        }, 5000)
     }
 }

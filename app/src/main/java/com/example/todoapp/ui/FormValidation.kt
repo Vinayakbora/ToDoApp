@@ -38,11 +38,11 @@ class FormValidation(ctx: Context) {
                 true
             } else {
                 value.error = "Please enter a valid Phone number"
-                true
+                false
             }
         } else {
             value.error = "Mobile Number cannot be empty"
-            true
+            false
         }
     }
 

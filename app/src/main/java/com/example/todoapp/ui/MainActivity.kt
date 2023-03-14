@@ -1,5 +1,6 @@
 package com.example.todoapp.ui
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
@@ -11,11 +12,12 @@ import com.example.todoapp.*
 import com.example.todoapp.adapter.TaskListAdapter
 import com.example.todoapp.data.ListViewModel
 import com.example.todoapp.data.LoginPreference
-import com.example.todoapp.data.Task
 import com.example.todoapp.utils.UIMode
+import com.example.todoapp.utils.convertStringToDate
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import java.util.Collections
 
-class MainActivity : AppCompatActivity(), ListFragment.NewTaskListener {
+class MainActivity : AppCompatActivity(), TaskFragment.NewTaskListener {
 
     private lateinit var addFab: FloatingActionButton
     private lateinit var recyclerView: RecyclerView
@@ -52,15 +54,30 @@ class MainActivity : AppCompatActivity(), ListFragment.NewTaskListener {
         }
 
         filterBtn.setOnClickListener{
-            listAdapter.filter()
+            sortTask()
         }
 
         addFab.setOnClickListener {
             toggleUI(UIMode.MODE_1)
             supportFragmentManager.beginTransaction()
-                .add(R.id.fragment_container, ListFragment::class.java, null).addToBackStack(null)
+                .add(R.id.fragment_container, TaskFragment::class.java, null).addToBackStack(null)
                 .commit()
         }
+    }
+
+    private val titleComparator = Comparator<ListViewModel>{ title1,title2 ->
+         title1.title.compareTo(title2.title)
+    }
+
+    private val dateComparator = Comparator<ListViewModel>{date1,date2->
+        convertStringToDate(date2.date)?.let {
+            convertStringToDate(date1.date)?.date?.compareTo(it.date)
+        } ?:0
+    }
+    @SuppressLint("NotifyDataSetChanged")
+    private fun sortTask(){
+        Collections.sort(taskList,dateComparator)
+        listAdapter.notifyDataSetChanged()
     }
 
     fun toggleUI(mode: UIMode){
@@ -69,8 +86,15 @@ class MainActivity : AppCompatActivity(), ListFragment.NewTaskListener {
         recyclerView.visibility = mode.recyclerViewVisibility
     }
 
-    override fun onNewTask(task: Task) {
-        taskList.add(ListViewModel("${task.title}","${task.desc}","${task.date}"))
+    override fun onNewTask(task: ListViewModel) {
+        taskList.add(ListViewModel(task.title, task.desc, task.date))
         listAdapter.notifyItemInserted(taskList.size-1)
+    }
+
+    override fun onEditTask(task: ListViewModel, pos: Int) {
+        taskList[pos].title = task.title
+        taskList[pos].desc = task.desc
+        taskList[pos].date = task.date
+        listAdapter.notifyItemChanged(pos)
     }
 }

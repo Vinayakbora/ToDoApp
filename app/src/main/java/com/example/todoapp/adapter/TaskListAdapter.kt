@@ -1,6 +1,5 @@
 package com.example.todoapp.adapter
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todoapp.R
 import com.example.todoapp.data.ListViewModel
-import com.example.todoapp.ui.ListFragment
+import com.example.todoapp.ui.TaskFragment
 import com.example.todoapp.ui.MainActivity
 import com.example.todoapp.utils.UIMode
 
@@ -46,16 +45,15 @@ class TaskListAdapter(private val activity: MainActivity,private var tList: Arra
             activity.toggleUI(UIMode.MODE_1)
             val item = tList[position]
             val fragmentManager = (holder.itemView.context as AppCompatActivity).supportFragmentManager
-            val inputFragment = ListFragment()
+            val inputFragment = TaskFragment()
             val bundle = Bundle()
             bundle.putParcelable("item", item)
+            bundle.putInt("itemPos", holder.adapterPosition)
             inputFragment.arguments = bundle
             fragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, inputFragment)
                 .addToBackStack(null)
                 .commit()
-            val pos = holder.adapterPosition
-            deleteItem(pos)
         }
 
         holder.deleteBtn.setOnClickListener{
@@ -71,13 +69,6 @@ class TaskListAdapter(private val activity: MainActivity,private var tList: Arra
         tList.removeAt(index)
         notifyItemRemoved(index)
     }
-
-    @SuppressLint("NotifyDataSetChanged")
-    fun filter() {
-        tList.sortedBy { it.title }
-        notifyDataSetChanged()
-    }
-
     inner class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         val titleView: TextView = itemView.findViewById(R.id.titleView)
         val descTextView: TextView = itemView.findViewById(R.id.descriptionTextView)
