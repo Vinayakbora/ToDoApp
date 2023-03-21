@@ -51,6 +51,7 @@ class TaskListAdapter(private val activity: MainActivity,private var tList: Arra
             bundle.putInt("itemPos", holder.adapterPosition)
             inputFragment.arguments = bundle
             fragmentManager.beginTransaction()
+                .setCustomAnimations(R.anim.zoom_in,0,0,0)
                 .replace(R.id.fragment_container, inputFragment)
                 .addToBackStack(null)
                 .commit()

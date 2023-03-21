@@ -1,0 +1,87 @@
+package com.example.todoapp.ui
+
+import android.animation.ObjectAnimator
+import android.annotation.SuppressLint
+import android.graphics.drawable.AnimatedVectorDrawable
+import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.view.View
+import android.view.animation.BounceInterpolator
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.content.res.AppCompatResources
+import com.example.todoapp.R
+import com.example.todoapp.data.LoginPreference
+import com.example.todoapp.imageSlider.ImageSliderActivity
+
+private const val splashDuration: Long = 6500
+private const val subHeadingDelay: Long = 3500
+private const val titleDelay: Long = 100
+private const val tickAnimationDelay: Long = 6200
+private const val subHeadingVisibilityDelay: Long = 3501
+private const val titleVisibilityDelay: Long = 310
+private const val bounceAnimDuration: Long = 3000
+
+@SuppressLint("CustomSplashScreen")
+class SplashScreenActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.splash_screen)
+
+        val title = findViewById<TextView>(R.id.appTitle)
+        val subHeading = findViewById<TextView>(R.id.subheading)
+        val tick = findViewById<ImageView>(R.id.tick)
+        val loginStatus = LoginPreference(this).getLoginStatus()
+        val handler = Handler(Looper.getMainLooper())
+
+        handler.postDelayed({
+            title.visibility = View.VISIBLE
+        }, titleVisibilityDelay)
+
+        handler.postDelayed({
+            subHeading.visibility = View.VISIBLE
+        }, subHeadingVisibilityDelay)
+
+        handler.postDelayed({
+            val avd =
+                AppCompatResources.getDrawable(this, R.drawable.done_tick) as AnimatedVectorDrawable
+            tick.setImageDrawable(avd)
+            avd.start()
+        }, tickAnimationDelay)
+
+        handler.postDelayed({
+            val bounceAnim = ObjectAnimator.ofFloat(title, "translationY", -200f, 100f, 500f)
+            bounceAnim.duration = bounceAnimDuration
+            bounceAnim.interpolator = BounceInterpolator()
+            bounceAnim.start()
+        }, titleDelay)
+
+
+        fun TextView.animateText(text: String) {
+            var i = 0
+            handler.postDelayed(object : Runnable {
+                override fun run() {
+                    if (i <= text.length) {
+                        val str = text.substring(0, i)
+                        setText(str)
+                        i++
+                        handler.postDelayed(this, 75)
+                    }
+                }
+            }, subHeadingDelay)
+        }
+        subHeading.animateText(subHeading.text.toString())
+
+        handler.postDelayed({
+            if (loginStatus) {
+                MainActivity.openMainActivity(this)
+                finish()
+            } else {
+                ImageSliderActivity.openImgSliderActivity(this)
+                finish()
+            }
+        }, splashDuration)
+    }
+}

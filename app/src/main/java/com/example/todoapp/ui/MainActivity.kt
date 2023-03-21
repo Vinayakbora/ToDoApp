@@ -1,6 +1,7 @@
 package com.example.todoapp.ui
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
@@ -12,33 +13,41 @@ import com.example.todoapp.*
 import com.example.todoapp.adapter.TaskListAdapter
 import com.example.todoapp.data.ListViewModel
 import com.example.todoapp.data.LoginPreference
+import com.example.todoapp.retrofit.RetrofitDataActivity
 import com.example.todoapp.utils.UIMode
 import com.example.todoapp.utils.convertStringToDate
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.util.Collections
 
 class MainActivity : AppCompatActivity(), TaskFragment.NewTaskListener {
+    companion object{
+        fun openMainActivity(ctx: Context){
+            ctx.startActivity(Intent(ctx,MainActivity::class.java))
+        }
+    }
 
     private lateinit var addFab: FloatingActionButton
     private lateinit var recyclerView: RecyclerView
     private lateinit var userName: TextView
+    private lateinit var titleToolBar: String
     private lateinit var logoutBtn: ImageView
     private lateinit var filterBtn: ImageView
     private lateinit var listAdapter: TaskListAdapter
     private var taskList: ArrayList<ListViewModel> = arrayListOf()
+    private var loginStatus: LoginPreference? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val loginStatus = LoginPreference(this)
-        val titleToolBar = loginStatus.getName()
+        loginStatus = LoginPreference(this)
+        titleToolBar = loginStatus?.getName() ?: ""
 
-        recyclerView = findViewById(R.id.recyclerView)
         addFab = findViewById(R.id.add_fab)
         logoutBtn = findViewById(R.id.logoutBtn)
         filterBtn = findViewById(R.id.filter)
         userName = findViewById(R.id.username)
+        recyclerView = findViewById(R.id.recyclerView)
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         listAdapter = TaskListAdapter(this,taskList)
@@ -47,9 +56,9 @@ class MainActivity : AppCompatActivity(), TaskFragment.NewTaskListener {
         userName.text = titleToolBar
 
         logoutBtn.setOnClickListener {
-            loginStatus.deleteData()
-            val intent = Intent(this, SigningUpActivity::class.java)
-            startActivity(intent)
+            loginStatus?.deleteData()
+            SigningUpActivity.openSignInActivity(this)
+//          RetrofitDataActivity.openRetrofitActivity(this)
             finish()
         }
 
@@ -60,6 +69,7 @@ class MainActivity : AppCompatActivity(), TaskFragment.NewTaskListener {
         addFab.setOnClickListener {
             toggleUI(UIMode.MODE_1)
             supportFragmentManager.beginTransaction()
+                .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
                 .add(R.id.fragment_container, TaskFragment::class.java, null).addToBackStack(null)
                 .commit()
         }

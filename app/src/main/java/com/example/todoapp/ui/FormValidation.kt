@@ -7,20 +7,14 @@ import java.util.regex.Pattern
 
 class FormValidation(ctx: Context) {
 
-    private val ctx: Context
     private val loginStatus = LoginPreference(ctx)
     private val nameRegex = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*\$"
     private val phoneRegex = "^\\d{10}\$"
-
-    init {
-        this.ctx = ctx
-    }
 
     fun validateName(name: String, value: EditText): Boolean{
         return if (name.isNotEmpty()) {
             if (Pattern.matches(nameRegex, name)) {
                 loginStatus.saveName(name)
-                loginStatus.saveLoginStatus()
                 true
             } else {
                 value.error = "Please enter a valid Name"
