@@ -6,10 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.todoapp.R
+import com.example.todoapp.databinding.ActivityRetrofitDataBinding
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -21,17 +22,17 @@ class RetrofitDataActivity : AppCompatActivity() {
             ctx.startActivity(Intent(ctx, RetrofitDataActivity::class.java))
         }
     }
+    private lateinit var binding: ActivityRetrofitDataBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_retrofit_data)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_retrofit_data)
 
-        val recyclerView: RecyclerView = findViewById(R.id.retrofitRecyclerView)
         val layoutManager = LinearLayoutManager(applicationContext)
         val customAdapter = RetrofitAdapter()
 
-        recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = customAdapter
+        binding.retrofitRecyclerView.layoutManager = layoutManager
+        binding.retrofitRecyclerView.adapter = customAdapter
 
         val retrofit = Retrofit.Builder().baseUrl("https://bfsd.uat.bfsgodirect.com/")
             .addConverterFactory(GsonConverterFactory.create())
@@ -44,7 +45,7 @@ class RetrofitDataActivity : AppCompatActivity() {
                 val response = retrofitAPI.getData()
                 if (response.isSuccessful) {
                     response.body()?.let { res ->
-                        (recyclerView.adapter as? RetrofitAdapter)?.setList(res.personalizationSequence)
+                        (binding.retrofitRecyclerView.adapter as? RetrofitAdapter)?.setList(res.personalizationSequence)
                     }
                 } else {
                     Log.e("Data Error", "Data Not Found")

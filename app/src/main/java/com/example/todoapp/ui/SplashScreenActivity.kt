@@ -8,12 +8,13 @@ import android.os.Handler
 import android.os.Looper
 import android.view.View
 import android.view.animation.BounceInterpolator
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.databinding.DataBindingUtil
 import com.example.todoapp.R
 import com.example.todoapp.data.LoginPreference
+import com.example.todoapp.databinding.SplashScreenBinding
 import com.example.todoapp.imageSlider.ImageSliderActivity
 
 private const val splashDuration: Long = 6500
@@ -26,38 +27,35 @@ private const val bounceAnimDuration: Long = 3000
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreenActivity : AppCompatActivity() {
+
+    private lateinit var binding: SplashScreenBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.splash_screen)
+        binding = DataBindingUtil.setContentView(this, R.layout.splash_screen)
 
-        val title = findViewById<TextView>(R.id.appTitle)
-        val subHeading = findViewById<TextView>(R.id.subheading)
-        val tick = findViewById<ImageView>(R.id.tick)
         val loginStatus = LoginPreference(this).getLoginStatus()
         val handler = Handler(Looper.getMainLooper())
 
         handler.postDelayed({
-            title.visibility = View.VISIBLE
+            binding.appTitle.visibility = View.VISIBLE
         }, titleVisibilityDelay)
 
         handler.postDelayed({
-            subHeading.visibility = View.VISIBLE
+            binding.subheading.visibility = View.VISIBLE
         }, subHeadingVisibilityDelay)
 
         handler.postDelayed({
-            val avd =
-                AppCompatResources.getDrawable(this, R.drawable.done_tick) as AnimatedVectorDrawable
-            tick.setImageDrawable(avd)
+            val avd = AppCompatResources.getDrawable(this, R.drawable.done_tick) as AnimatedVectorDrawable
+            binding.tick.setImageDrawable(avd)
             avd.start()
         }, tickAnimationDelay)
 
         handler.postDelayed({
-            val bounceAnim = ObjectAnimator.ofFloat(title, "translationY", -200f, 100f, 500f)
+            val bounceAnim = ObjectAnimator.ofFloat( binding.appTitle, "translationY", -200f, 100f, 500f)
             bounceAnim.duration = bounceAnimDuration
             bounceAnim.interpolator = BounceInterpolator()
             bounceAnim.start()
         }, titleDelay)
-
 
         fun TextView.animateText(text: String) {
             var i = 0
@@ -72,7 +70,7 @@ class SplashScreenActivity : AppCompatActivity() {
                 }
             }, subHeadingDelay)
         }
-        subHeading.animateText(subHeading.text.toString())
+        binding.subheading.animateText( binding.subheading.text.toString())
 
         handler.postDelayed({
             if (loginStatus) {

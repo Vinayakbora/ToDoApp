@@ -2,6 +2,7 @@ package com.example.todoapp.ui
 
 import android.app.Activity
 import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
@@ -14,7 +15,7 @@ import android.widget.ImageView
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import com.example.todoapp.R
-import com.example.todoapp.data.ListViewModel
+import com.example.todoapp.data.ListModel
 import com.example.todoapp.utils.UIMode
 import java.util.*
 
@@ -67,18 +68,18 @@ class TaskFragment : Fragment() {
         docText = view.findViewById(R.id.date_of_completion_text)
         doneBtn = view.findViewById(R.id.doneBtn)
 
-        val editViewModel = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            arguments?.getParcelable("item", ListViewModel::class.java)
+        val ediListModel = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            arguments?.getParcelable("item", ListModel::class.java)
         } else {
             arguments?.getParcelable("item")
         }
 
         editingPos = arguments?.getInt("itemPos")
-        editViewModel?.let {
+        ediListModel?.let {
             modeEditing = true
-            titleText.setText(editViewModel.title)
-            descText.setText(editViewModel.desc)
-            docText.setText(editViewModel.date)
+            titleText.setText(ediListModel.title)
+            descText.setText(ediListModel.desc)
+            docText.setText(ediListModel.date)
         }
 
         docText.setOnClickListener {
@@ -93,18 +94,18 @@ class TaskFragment : Fragment() {
                 requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(doneBtn.windowToken, 0)
             if (modeEditing) {
-                editingPos?.let { pos -> listener?.onEditTask(ListViewModel(editTitleText, editDescText, editDocText), pos) }
+                editingPos?.let { pos -> listener?.onEditTask(ListModel(editTitleText, editDescText, editDocText), pos) }
             }
             else
-                listener?.onNewTask(task = ListViewModel(editTitleText, editDescText, editDocText))
+                listener?.onNewTask(task = ListModel(editTitleText, editDescText, editDocText))
             activity?.onBackPressedDispatcher?.onBackPressed()
         }
         return view
     }
 
     interface NewTaskListener {
-        fun onNewTask(task: ListViewModel)
-        fun onEditTask(task: ListViewModel, pos: Int)
+        fun onNewTask(task: ListModel)
+        fun onEditTask(task: ListModel, pos: Int)
     }
 
     private fun completionDatePicker(){
@@ -115,9 +116,26 @@ class TaskFragment : Fragment() {
 
         val datePickerDialog = DatePickerDialog(
             requireContext(),
-            { _, birthYear, monthOfYear, dayOfMonth ->
-                val dat = (dayOfMonth.toString() + "-" + (monthOfYear + 1) + "-" + birthYear)
-                docText.setText(dat)
+            { _, completionYear, monthOfYear, dayOfMonth ->
+                val timePickerDialog = TimePickerDialog(
+                    requireContext(),
+                    { _, hourOfDay, minute ->
+                        val dat = (dayOfMonth.toString() + "-" + (monthOfYear + 1) + "-" + year + "   " + hourOfDay + ":" + minute )
+                        docText.setText(dat)
+                        Calendar.getInstance().apply {
+                            set(Calendar.YEAR, completionYear)
+                            set(Calendar.MONTH, monthOfYear)
+                            set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                            set(Calendar.HOUR_OF_DAY, hourOfDay)
+                            set(Calendar.MINUTE, minute)
+                            set(Calendar.SECOND, 0)
+                        }.timeInMillis
+                    },
+                    c.get(Calendar.HOUR_OF_DAY),
+                    c.get(Calendar.MINUTE),
+                    true
+                )
+                timePickerDialog.show()
             },
             year, month, day
         )

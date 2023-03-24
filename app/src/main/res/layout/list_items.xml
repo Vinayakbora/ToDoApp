@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+<androidx.cardview.widget.CardView
     android:layout_width="330dp"
     android:layout_height="wrap_content"
     android:backgroundTint="@color/light"
@@ -29,20 +33,22 @@
         <ImageView
             android:id="@+id/editTask"
             android:layout_width="0dp"
-            android:contentDescription="@string/edit_button"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/edit_task" />
+            android:contentDescription="@string/edit_button"
+            app:srcCompat="@drawable/edit_task"
+            tools:ignore="RedundantDescriptionCheck,ImageContrastCheck" />
 
         <ImageView
             android:id="@+id/deleteTask"
             android:layout_width="0dp"
-            android:contentDescription="@string/delete_button"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/delete" />
+            android:contentDescription="@string/delete_button"
+            app:srcCompat="@drawable/delete"
+            tools:ignore="RedundantDescriptionCheck" />
 
 
     </LinearLayout>
@@ -73,8 +79,11 @@
             android:text="@string/date"
             android:textColor="@android:color/black"
             android:textSize="16sp"
-            android:visibility="gone" />
+            android:visibility="gone"
+            android:drawablePadding="15dp"
+            app:drawableStartCompat="@drawable/calender_black" />
 
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
+</layout>

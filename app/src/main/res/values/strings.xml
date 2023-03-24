@@ -14,8 +14,9 @@
     <string name="save">Save</string>
     <string name="title">Title</string>
     <string name="description">Description</string>
-    <string name="task_completion_date">Completion Date</string>
+    <string name="task_completion_date">Completion Date and Time</string>
     <string name="date">Date</string>
+    <string name="time">Time</string>
     <string name="page_viewer_image">page viewer image</string>
     <string name="skip">Skip</string>
     <string name="task">Task</string>

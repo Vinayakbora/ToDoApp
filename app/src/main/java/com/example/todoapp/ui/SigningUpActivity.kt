@@ -5,10 +5,10 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
+import androidx.databinding.DataBindingUtil
 import com.example.todoapp.data.LoginPreference
 import com.example.todoapp.R
+import com.example.todoapp.databinding.ActivitySigningUpBinding
 import java.util.*
 
 private const val minDateTime : Long = 1893000000000
@@ -25,36 +25,28 @@ class SigningUpActivity : AppCompatActivity() {
     private var isDateValidated: Boolean = false
     private var loginStatus: LoginPreference? = null
     private var validation: FormValidation? = null
-    private lateinit var nameText: EditText
-    private lateinit var numberText: EditText
-    private lateinit var dobText: EditText
-    private lateinit var signInButton: Button
+    private lateinit var binding: ActivitySigningUpBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_signing_up)
-
-        signInButton = findViewById(R.id.signInButton)
-        nameText = findViewById(R.id.nameText)
-        numberText = findViewById(R.id.numberText)
-        dobText = findViewById(R.id.dobText)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_signing_up)
 
         validation = FormValidation(this)
         loginStatus = LoginPreference(this)
 
-        dobText.setOnClickListener{
+        binding.dobText.setOnClickListener{
             datePicker()
         }
 
-        nameText.apply {
+        binding.nameText.apply {
             setOnFocusChangeListener { _, hasFocus ->
                 if(!hasFocus){
-                    isNameValidated = validation?.validateName(nameText.text.toString(),nameText) ?: false
+                    isNameValidated = validation?.validateName(binding.nameText.text.toString(),binding.nameText) ?: false
                 }
             }
         }
 
-        numberText.apply {
+        binding.numberText.apply {
             setOnFocusChangeListener { _, hasFocus ->
                 if(!hasFocus){
                     checkPhoneValidation()
@@ -62,16 +54,16 @@ class SigningUpActivity : AppCompatActivity() {
             }
         }
 
-        signInButton.setOnClickListener{
-            validation?.validateName(nameText.text.toString(),nameText)
-            validation?.validatePhone(numberText.text.toString(),numberText)
-            isDateValidated = validation?.validateDOB(dobText.text.toString(),dobText)?: false
+        binding.signInButton.setOnClickListener{
+            validation?.validateName(binding.nameText.text.toString(),binding.nameText)
+            validation?.validatePhone(binding.numberText.text.toString(),binding.numberText)
+            isDateValidated = validation?.validateDOB( binding.dobText.text.toString(), binding.dobText)?: false
             checkValidation()
         }
     }
 
     private fun checkPhoneValidation(){
-        isNumberValidated = validation?.validatePhone(numberText.text.toString(),numberText) ?: false
+        isNumberValidated = validation?.validatePhone(binding.numberText.text.toString(),binding.numberText) ?: false
     }
     private fun datePicker(){
         checkPhoneValidation()
@@ -83,7 +75,7 @@ class SigningUpActivity : AppCompatActivity() {
         val datePickerDialog = DatePickerDialog(this,
             { _, birthYear, monthOfYear, dayOfMonth ->
                 val dat = (dayOfMonth.toString() + "-" + (monthOfYear + 1) + "-" + birthYear)
-                dobText.setText(dat)
+                binding.dobText.setText(dat)
             },
             year, month, day
         )

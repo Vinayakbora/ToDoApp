@@ -9,22 +9,20 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todoapp.R
-import com.example.todoapp.data.ListViewModel
+import com.example.todoapp.data.ListModel
+import com.example.todoapp.databinding.ListItemsBinding
 import com.example.todoapp.ui.TaskFragment
 import com.example.todoapp.ui.MainActivity
 import com.example.todoapp.utils.UIMode
 
-class TaskListAdapter(private val activity: MainActivity,private var tList: ArrayList<ListViewModel>) : RecyclerView.Adapter<TaskListAdapter.ViewHolder>() {
+class TaskListAdapter(private val activity: MainActivity,private var tList: ArrayList<ListModel>) : RecyclerView.Adapter<TaskListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.list_items, parent, false)
-
-        return ViewHolder(view)
+        val binding = ListItemsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
         val itemsViewModel = tList[position]
         holder.titleView.text = itemsViewModel.title
         holder.descTextView.text = itemsViewModel.desc
@@ -43,11 +41,10 @@ class TaskListAdapter(private val activity: MainActivity,private var tList: Arra
 
         holder.editBtn.setOnClickListener{
             activity.toggleUI(UIMode.MODE_1)
-            val item = tList[position]
             val fragmentManager = (holder.itemView.context as AppCompatActivity).supportFragmentManager
             val inputFragment = TaskFragment()
             val bundle = Bundle()
-            bundle.putParcelable("item", item)
+            bundle.putParcelable("item", itemsViewModel)
             bundle.putInt("itemPos", holder.adapterPosition)
             inputFragment.arguments = bundle
             fragmentManager.beginTransaction()
@@ -70,11 +67,11 @@ class TaskListAdapter(private val activity: MainActivity,private var tList: Arra
         tList.removeAt(index)
         notifyItemRemoved(index)
     }
-    inner class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
-        val titleView: TextView = itemView.findViewById(R.id.titleView)
-        val descTextView: TextView = itemView.findViewById(R.id.descriptionTextView)
-        val completionDate: TextView = itemView.findViewById(R.id.dateTextView)
-        val editBtn: ImageView = itemView.findViewById(R.id.editTask)
-        val deleteBtn: ImageView = itemView.findViewById(R.id.deleteTask)
+    inner class ViewHolder(val binding: ListItemsBinding) : RecyclerView.ViewHolder(binding.root) {
+        val titleView: TextView = binding.titleView
+        val descTextView: TextView = binding.descriptionTextView
+        val completionDate: TextView = binding.dateTextView
+        val editBtn: ImageView = binding.editTask
+        val deleteBtn: ImageView = binding.deleteTask
     }
 }
