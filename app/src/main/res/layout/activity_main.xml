@@ -71,6 +71,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             tools:ignore="ImageContrastCheck" />
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/showData_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="96dp"
+            android:contentDescription="@string/add_checklist"
+            android:src="@drawable/tab_selector"
+            app:fabSize="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="ImageContrastCheck" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"

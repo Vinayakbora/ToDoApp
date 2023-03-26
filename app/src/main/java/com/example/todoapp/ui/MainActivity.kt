@@ -6,12 +6,15 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.todoapp.*
-import com.example.todoapp.adapter.TaskListAdapter
+import com.example.todoapp.adapter.ListAdapter
 import com.example.todoapp.data.ListModel
+import com.example.todoapp.data.ListViewModel
 import com.example.todoapp.data.LoginPreference
 import com.example.todoapp.databinding.ActivityMainBinding
+import com.example.todoapp.retrofit.RetrofitDataActivity
 import com.example.todoapp.utils.UIMode
 import com.example.todoapp.utils.convertStringToDate
 import java.util.*
@@ -24,9 +27,9 @@ class MainActivity : AppCompatActivity(), TaskFragment.NewTaskListener {
     }
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var listAdapter: TaskListAdapter
-    private var taskList: ArrayList<ListModel> = arrayListOf()
+    private lateinit var listAdapter: ListAdapter
     private var loginStatus: LoginPreference? = null
+    private lateinit var viewModel: ListViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,14 +38,18 @@ class MainActivity : AppCompatActivity(), TaskFragment.NewTaskListener {
         loginStatus = LoginPreference(this)
         binding.username.text = loginStatus?.getName() ?: ""
 
+        viewModel = ViewModelProvider(this)[ListViewModel::class.java]
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
-        listAdapter = TaskListAdapter(this, taskList)
+        listAdapter = ListAdapter(this,viewModel)
         binding.recyclerView.adapter = listAdapter
+
+        viewModel.items.observe(this) { items ->
+            listAdapter.tList = items
+        }
 
         binding.logoutBtn.setOnClickListener {
             loginStatus?.deleteData()
             SigningUpActivity.openSignInActivity(this)
-//            RetrofitDataActivity.openRetrofitActivity(this)
             finish()
         }
 
@@ -62,6 +69,11 @@ class MainActivity : AppCompatActivity(), TaskFragment.NewTaskListener {
                 .add(R.id.fragment_container, TaskFragment::class.java, null).addToBackStack(null)
                 .commit()
         }
+
+        binding.showDataFab.setOnClickListener {
+            toggleUI(UIMode.MODE_1)
+            RetrofitDataActivity.openRetrofitActivity(this)
+        }
     }
 
     private val dateComparator = Comparator<ListModel> { date1, date2 ->
@@ -75,7 +87,7 @@ class MainActivity : AppCompatActivity(), TaskFragment.NewTaskListener {
 
     @SuppressLint("NotifyDataSetChanged")
     private fun sortTask() {
-        Collections.sort(taskList, dateComparator)
+        Collections.sort( listAdapter.tList, dateComparator)
         listAdapter.notifyDataSetChanged()
     }
 
@@ -86,14 +98,14 @@ class MainActivity : AppCompatActivity(), TaskFragment.NewTaskListener {
     }
 
     override fun onNewTask(task: ListModel) {
-        taskList.add(ListModel(task.title, task.desc, task.date))
-        listAdapter.notifyItemInserted(taskList.size - 1)
+        viewModel.addItem(ListModel(task.title, task.desc, task.date))
+        listAdapter.notifyItemInserted( listAdapter.tList.size - 1)
     }
 
     override fun onEditTask(task: ListModel, pos: Int) {
-        taskList[pos].title = task.title
-        taskList[pos].desc = task.desc
-        taskList[pos].date = task.date
+        listAdapter.tList[pos].title = task.title
+        listAdapter.tList[pos].desc = task.desc
+        listAdapter.tList[pos].date = task.date
         listAdapter.notifyItemChanged(pos)
     }
 }

@@ -1,5 +1,6 @@
 package com.example.todoapp.adapter
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,12 +11,20 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todoapp.R
 import com.example.todoapp.data.ListModel
+import com.example.todoapp.data.ListViewModel
 import com.example.todoapp.databinding.ListItemsBinding
 import com.example.todoapp.ui.TaskFragment
 import com.example.todoapp.ui.MainActivity
 import com.example.todoapp.utils.UIMode
 
-class TaskListAdapter(private val activity: MainActivity,private var tList: ArrayList<ListModel>) : RecyclerView.Adapter<TaskListAdapter.ViewHolder>() {
+class ListAdapter(private val activity: MainActivity,private val viewModel: ListViewModel) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
+
+     var tList: List<ListModel> = emptyList()
+        @SuppressLint("NotifyDataSetChanged")
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ListItemsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -55,18 +64,14 @@ class TaskListAdapter(private val activity: MainActivity,private var tList: Arra
         }
 
         holder.deleteBtn.setOnClickListener{
-            val pos = holder.adapterPosition
-            deleteItem(pos)
+            viewModel.removeItem(itemsModel)
         }
     }
 
     override fun getItemCount(): Int {
         return tList.size
     }
-    private fun deleteItem(index: Int){
-        tList.removeAt(index)
-        notifyItemRemoved(index)
-    }
+
     inner class ViewHolder(val binding: ListItemsBinding) : RecyclerView.ViewHolder(binding.root) {
         val titleView: TextView = binding.titleView
         val descTextView: TextView = binding.descriptionTextView
