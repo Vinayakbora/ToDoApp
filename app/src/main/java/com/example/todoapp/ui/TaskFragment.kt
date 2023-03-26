@@ -10,24 +10,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
-import android.widget.ImageView
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import com.example.todoapp.R
 import com.example.todoapp.data.ListModel
+import com.example.todoapp.databinding.FragmentTaskBinding
 import com.example.todoapp.utils.UIMode
 import java.util.*
 
 class TaskFragment : Fragment() {
 
+    private lateinit var binding: FragmentTaskBinding
     private var listener: NewTaskListener? = null
     private var modeEditing = false
     private var editingPos: Int? = null
-    private lateinit var titleText: EditText
-    private lateinit var descText: EditText
-    private lateinit var docText: EditText
-    private lateinit var doneBtn: ImageView
     private lateinit var editTitleText: String
     private lateinit var editDescText: String
     private lateinit var editDocText: String
@@ -60,13 +56,8 @@ class TaskFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_task, container, false)
-
-        titleText = view.findViewById(R.id.titleText)
-        descText = view.findViewById(R.id.descriptionText)
-        docText = view.findViewById(R.id.date_of_completion_text)
-        doneBtn = view.findViewById(R.id.doneBtn)
+    ): View {
+        binding = FragmentTaskBinding.inflate(inflater, container, false)
 
         val ediListModel = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             arguments?.getParcelable("item", ListModel::class.java)
@@ -77,22 +68,23 @@ class TaskFragment : Fragment() {
         editingPos = arguments?.getInt("itemPos")
         ediListModel?.let {
             modeEditing = true
-            titleText.setText(ediListModel.title)
-            descText.setText(ediListModel.desc)
-            docText.setText(ediListModel.date)
+            binding.titleText.setText(ediListModel.title)
+            binding.descriptionText.setText(ediListModel.desc)
+            binding.dateOfCompletionText.setText(ediListModel.date)
         }
 
-        docText.setOnClickListener {
+        binding.dateOfCompletionText.setOnClickListener {
             completionDatePicker()
         }
 
-        doneBtn.setOnClickListener {
-            editTitleText = titleText.text.toString()
-            editDescText = descText.text.toString()
-            editDocText = docText.text.toString()
-            val imm: InputMethodManager =
-                requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromWindow(doneBtn.windowToken, 0)
+        binding.doneBtn.setOnClickListener {
+            editTitleText =  binding.titleText.text.toString()
+            editDescText = binding.descriptionText.text.toString()
+            editDocText = binding.dateOfCompletionText.text.toString()
+
+            val imm: InputMethodManager = requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow( binding.doneBtn.windowToken, 0)
+
             if (modeEditing) {
                 editingPos?.let { pos -> listener?.onEditTask(ListModel(editTitleText, editDescText, editDocText), pos) }
             }
@@ -100,7 +92,7 @@ class TaskFragment : Fragment() {
                 listener?.onNewTask(task = ListModel(editTitleText, editDescText, editDocText))
             activity?.onBackPressedDispatcher?.onBackPressed()
         }
-        return view
+        return binding.root
     }
 
     interface NewTaskListener {
@@ -121,7 +113,7 @@ class TaskFragment : Fragment() {
                     requireContext(),
                     { _, hourOfDay, minute ->
                         val dat = (dayOfMonth.toString() + "-" + (monthOfYear + 1) + "-" + year + "   " + hourOfDay + ":" + minute )
-                        docText.setText(dat)
+                        binding.dateOfCompletionText.setText(dat)
                         Calendar.getInstance().apply {
                             set(Calendar.YEAR, completionYear)
                             set(Calendar.MONTH, monthOfYear)

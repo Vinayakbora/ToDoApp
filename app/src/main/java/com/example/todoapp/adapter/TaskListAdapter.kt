@@ -23,10 +23,10 @@ class TaskListAdapter(private val activity: MainActivity,private var tList: Arra
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val itemsViewModel = tList[position]
-        holder.titleView.text = itemsViewModel.title
-        holder.descTextView.text = itemsViewModel.desc
-        holder.completionDate.text = itemsViewModel.date
+        val itemsModel = tList[position]
+        holder.titleView.text = itemsModel.title
+        holder.descTextView.text = itemsModel.desc
+        holder.completionDate.text = itemsModel.date
 
         holder.titleView.setOnClickListener{
             if( holder.descTextView.visibility == View.GONE &&  holder.completionDate.visibility == View.GONE){
@@ -44,7 +44,7 @@ class TaskListAdapter(private val activity: MainActivity,private var tList: Arra
             val fragmentManager = (holder.itemView.context as AppCompatActivity).supportFragmentManager
             val inputFragment = TaskFragment()
             val bundle = Bundle()
-            bundle.putParcelable("item", itemsViewModel)
+            bundle.putParcelable("item", itemsModel)
             bundle.putInt("itemPos", holder.adapterPosition)
             inputFragment.arguments = bundle
             fragmentManager.beginTransaction()
