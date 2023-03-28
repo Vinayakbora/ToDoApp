@@ -19,8 +19,10 @@ class ImageSliderFragment : Fragment() {
     ): View {
         binding = FragmentImageSliderBinding.inflate(inflater, container, false)
 
-        binding.imageViewLogo.setImageDrawable(arguments?.getInt("FragmentImage")
-            ?.let { AppCompatResources.getDrawable(requireContext(),it) })
+        binding.imageViewLogo.setImageDrawable(
+            arguments?.getInt("FragmentImage")?.let {
+                AppCompatResources.getDrawable(requireContext(),it)
+            })
 
         return binding.root
     }

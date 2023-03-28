@@ -1,8 +1,9 @@
-package com.example.todoapp.data
+package com.example.todoapp.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.todoapp.data.ListModel
 
 class ListViewModel : ViewModel(){
     private val _items = MutableLiveData<List<ListModel>>(mutableListOf())

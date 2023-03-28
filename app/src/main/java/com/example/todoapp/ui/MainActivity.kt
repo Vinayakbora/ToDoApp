@@ -9,9 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.todoapp.*
-import com.example.todoapp.adapter.ListAdapter
 import com.example.todoapp.data.ListModel
-import com.example.todoapp.data.ListViewModel
 import com.example.todoapp.data.LoginPreference
 import com.example.todoapp.databinding.ActivityMainBinding
 import com.example.todoapp.retrofit.RetrofitDataActivity
@@ -71,7 +69,6 @@ class MainActivity : AppCompatActivity(), TaskFragment.NewTaskListener {
         }
 
         binding.showDataFab.setOnClickListener {
-            toggleUI(UIMode.MODE_1)
             RetrofitDataActivity.openRetrofitActivity(this)
         }
     }
@@ -92,9 +89,9 @@ class MainActivity : AppCompatActivity(), TaskFragment.NewTaskListener {
     }
 
     fun toggleUI(mode: UIMode) {
-        binding.logoutBtn.visibility = mode.logoutBtnVisibility
         binding.addFab.visibility = mode.mAddFabVisibility
         binding.recyclerView.visibility = mode.recyclerViewVisibility
+        binding.showDataFab.visibility = mode.dataFabVisibility
     }
 
     override fun onNewTask(task: ListModel) {

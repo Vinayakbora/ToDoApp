@@ -66,6 +66,7 @@ class TaskFragment : Fragment() {
         }
 
         editingPos = arguments?.getInt("itemPos")
+
         ediListModel?.let {
             modeEditing = true
             binding.titleText.setText(ediListModel.title)

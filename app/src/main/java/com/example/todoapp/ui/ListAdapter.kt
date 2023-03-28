@@ -1,4 +1,4 @@
-package com.example.todoapp.adapter
+package com.example.todoapp.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -11,10 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todoapp.R
 import com.example.todoapp.data.ListModel
-import com.example.todoapp.data.ListViewModel
 import com.example.todoapp.databinding.ListItemsBinding
-import com.example.todoapp.ui.TaskFragment
-import com.example.todoapp.ui.MainActivity
 import com.example.todoapp.utils.UIMode
 
 class ListAdapter(private val activity: MainActivity,private val viewModel: ListViewModel) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
