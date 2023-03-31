@@ -51,6 +51,7 @@
     <style name="Toolbar.Title" parent="TextAppearance.AppCompat.Headline">
         <item name="android:textStyle">bold</item>
         <item name="android:fontFamily">@font/montserrat_bold_italic</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
 </resources>
