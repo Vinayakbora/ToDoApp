@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity(), TaskFragment.NewTaskListener {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         loginStatus = LoginPreference(this)
-        binding.username.text = loginStatus?.getName() ?: ""
+        binding.activityToolbar.title = loginStatus?.getName() ?: ""
 
         viewModel = ViewModelProvider(this)[ListViewModel::class.java]
         binding.recyclerView.layoutManager = LinearLayoutManager(this)

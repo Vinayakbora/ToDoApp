@@ -17,25 +17,15 @@
             android:background="@color/md_theme_light_primaryContainer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:title="@string/toolbarTitle"
+            app:titleTextAppearance="@style/Toolbar.Title"
             app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:id="@+id/username"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_bold_italic"
-                android:text="@string/username"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                tools:layout_editor_absoluteX="16dp"
-                tools:layout_editor_absoluteY="18dp" />
 
             <ImageView
                 android:id="@+id/filter"
                 android:layout_width="39dp"
                 android:layout_height="32dp"
-                android:layout_marginStart="60dp"
+                android:layout_marginStart="120dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
                 android:contentDescription="@string/filter"
@@ -65,11 +55,11 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:contentDescription="@string/add_checklist"
-            android:src="@drawable/baseline_checklist_rtl_24"
+            android:src="@drawable/baseline_edit_24"
             app:fabSize="normal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:ignore="ImageContrastCheck" />
+            tools:ignore="ImageContrastCheck,DuplicateSpeakableTextCheck" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/showData_fab"
@@ -79,7 +69,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="96dp"
             android:contentDescription="@string/add_checklist"
-            android:src="@drawable/tab_selector"
+            android:src="@drawable/baseline_format_list_bulleted_24"
             app:fabSize="normal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
