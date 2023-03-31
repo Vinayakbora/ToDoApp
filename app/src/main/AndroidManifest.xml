@@ -12,22 +12,22 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.ToDoApp"
+        android:name=".jsondata.di.HiltApplication"
         tools:targetApi="31">
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
         <activity
-            android:name=".retrofit.RetrofitDataActivity"
+            android:name=".jsondata.activity.PersonalizationActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
             android:theme="@style/AppTheme"/>
         <activity
-            android:name=".ui.SigningUpActivity"
+            android:name=".ui.onBoarding.activity.SigningUpActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".ui.SplashScreenActivity"
+            android:name=".ui.splashscreen.activity.SplashScreenActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.SplashScreen">
@@ -38,15 +38,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.home.activity.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".imageSlider.ImageSliderActivity"
+            android:name=".ui.onBoardingViewPager.activity.OnBoardingViewPagerActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
     </application>
-
 </manifest>

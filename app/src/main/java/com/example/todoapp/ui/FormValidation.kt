@@ -2,7 +2,7 @@ package com.example.todoapp.ui
 
 import android.content.Context
 import android.widget.EditText
-import com.example.todoapp.data.LoginPreference
+import com.example.todoapp.utils.LoginPreference
 import java.util.regex.Pattern
 
 class FormValidation(ctx: Context) {
