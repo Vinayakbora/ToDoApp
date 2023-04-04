@@ -4,9 +4,9 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.todoapp.*
 import com.example.todoapp.model.ListModel
@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity(), TaskFragment.NewTaskListener {
     private lateinit var binding: ActivityMainBinding
     private lateinit var listAdapter: ListAdapter
     private var loginStatus: LoginPreference? = null
-    private lateinit var viewModel: ListViewModel
+    private val viewModel: ListViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +40,6 @@ class MainActivity : AppCompatActivity(), TaskFragment.NewTaskListener {
         loginStatus = LoginPreference(this)
         binding.activityToolbar.title = loginStatus?.getName() ?: ""
 
-        viewModel = ViewModelProvider(this)[ListViewModel::class.java]
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         listAdapter = ListAdapter(this,viewModel)
         binding.recyclerView.adapter = listAdapter
@@ -100,7 +99,6 @@ class MainActivity : AppCompatActivity(), TaskFragment.NewTaskListener {
 
     override fun onNewTask(task: ListModel) {
         viewModel.addItem(ListModel(task.title, task.desc, task.date))
-        listAdapter.notifyItemInserted( listAdapter.tList.size - 1)
     }
 
     override fun onEditTask(task: ListModel, pos: Int) {

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todoapp.R
 import com.example.todoapp.model.ListModel
@@ -16,6 +17,7 @@ import com.example.todoapp.ui.home.viewmodel.ListViewModel
 import com.example.todoapp.ui.home.activity.MainActivity
 import com.example.todoapp.ui.home.fragment.TaskFragment
 import com.example.todoapp.utils.UIMode
+import com.google.android.material.snackbar.Snackbar
 
 class ListAdapter(private val activity: MainActivity, private val viewModel: ListViewModel) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
 
@@ -65,6 +67,12 @@ class ListAdapter(private val activity: MainActivity, private val viewModel: Lis
 
         holder.deleteBtn.setOnClickListener{
             viewModel.removeItem(itemsModel)
+
+            val clMain =activity.findViewById<ConstraintLayout>(R.id.clContainer)
+            Snackbar.make(clMain, "Task is Deleted", Snackbar.LENGTH_LONG)
+                .setAction("UNDO") {
+                    viewModel.addItem(itemsModel)
+                }.show()
         }
     }
 
