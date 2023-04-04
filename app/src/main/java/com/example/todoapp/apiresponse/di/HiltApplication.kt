@@ -1,4 +1,4 @@
-package com.example.todoapp.jsondata.di
+package com.example.todoapp.apiresponse.di
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

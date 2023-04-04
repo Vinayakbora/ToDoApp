@@ -1,4 +1,4 @@
-package com.example.todoapp.jsondata.adapter
+package com.example.todoapp.apiresponse.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todoapp.databinding.RetrofitDataListBinding
-import com.example.todoapp.jsondata.data.model.PersonalizationSequence
+import com.example.todoapp.apiresponse.data.model.PersonalizationSequence
 
 class PersonalizationAdapter : RecyclerView.Adapter<PersonalizationAdapter.ViewHolder>() {
 

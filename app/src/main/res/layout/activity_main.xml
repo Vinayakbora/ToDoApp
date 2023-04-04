@@ -8,7 +8,7 @@
         android:id="@+id/clContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.home.activity.MainActivity">
+        tools:context=".ui.home.activity.TaskActivity">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/activityToolbar"

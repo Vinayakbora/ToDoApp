@@ -1,6 +1,6 @@
-package com.example.todoapp.jsondata
+package com.example.todoapp.apiresponse
 
-import com.example.todoapp.jsondata.data.model.ApiResponse
+import com.example.todoapp.apiresponse.data.model.ApiResponse
 import retrofit2.Response
 import retrofit2.http.GET
 

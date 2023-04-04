@@ -13,9 +13,9 @@ import android.view.inputmethod.InputMethodManager
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import com.example.todoapp.R
-import com.example.todoapp.model.ListModel
+import com.example.todoapp.data.TaskModel
 import com.example.todoapp.databinding.FragmentTaskBinding
-import com.example.todoapp.ui.home.activity.MainActivity
+import com.example.todoapp.ui.home.activity.TaskActivity
 import com.example.todoapp.utils.UIMode
 import java.util.*
 
@@ -48,7 +48,7 @@ class TaskFragment : Fragment() {
                             .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right, R.anim.enter_from_left, R.anim.exit_to_left)
                             .remove(tF)
                             .commit() }
-                (activity as MainActivity).toggleUI(UIMode.MODE_2)
+                (activity as TaskActivity).toggleUI(UIMode.MODE_2)
             }
         })
     }
@@ -60,19 +60,19 @@ class TaskFragment : Fragment() {
     ): View {
         binding = FragmentTaskBinding.inflate(inflater, container, false)
 
-        val ediListModel = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            arguments?.getParcelable("item", ListModel::class.java)
+        val ediTaskModel = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            arguments?.getParcelable("item", TaskModel::class.java)
         } else {
             arguments?.getParcelable("item")
         }
 
         editingPos = arguments?.getInt("itemPos")
 
-        ediListModel?.let {
+        ediTaskModel?.let {
             modeEditing = true
-            binding.titleText.setText(ediListModel.title)
-            binding.descriptionText.setText(ediListModel.desc)
-            binding.dateOfCompletionText.setText(ediListModel.date)
+            binding.titleText.setText(ediTaskModel.title)
+            binding.descriptionText.setText(ediTaskModel.desc)
+            binding.dateOfCompletionText.setText(ediTaskModel.date)
         }
 
         binding.dateOfCompletionText.setOnClickListener {
@@ -88,18 +88,18 @@ class TaskFragment : Fragment() {
             imm.hideSoftInputFromWindow( binding.doneBtn.windowToken, 0)
 
             if (modeEditing) {
-                editingPos?.let { pos -> listener?.onEditTask(ListModel(editTitleText, editDescText, editDocText), pos) }
+                editingPos?.let { pos -> listener?.onEditTask(TaskModel(0,editTitleText, editDescText, editDocText), pos) }
             }
             else
-                listener?.onNewTask(task = ListModel(editTitleText, editDescText, editDocText))
+                listener?.onNewTask(task = TaskModel(0,editTitleText, editDescText, editDocText))
             activity?.onBackPressedDispatcher?.onBackPressed()
         }
         return binding.root
     }
 
     interface NewTaskListener {
-        fun onNewTask(task: ListModel)
-        fun onEditTask(task: ListModel, pos: Int)
+        fun onNewTask(task: TaskModel)
+        fun onEditTask(task: TaskModel, pos: Int)
     }
 
     private fun completionDatePicker(){

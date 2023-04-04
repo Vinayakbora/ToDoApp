@@ -1,6 +1,6 @@
-package com.example.todoapp.jsondata.di
+package com.example.todoapp.apiresponse.di
 
-import com.example.todoapp.jsondata.IPersonalization
+import com.example.todoapp.apiresponse.IPersonalization
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

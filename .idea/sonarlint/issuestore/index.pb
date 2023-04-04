@@ -27,14 +27,10 @@ Q.idea/sonarlint/securityhotspotstore/9/f/9fe84ebb15faf917b7def6236dba604453cc61
 Q.idea/sonarlint/securityhotspotstore/0/5/05efc8b1657769a27696d478ded1e95f38737233,2/5/2534b7ffebad46793fc4d77da07aca83b23dd835
 Å
 Q.idea/sonarlint/securityhotspotstore/8/8/88a9255124c95bdc913197c120a8d560edc59c8e,9/0/909762385fc6eb20f922a91c6865741308b57f2c
-P
- app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
 j
 :app/src/main/java/com/example/todoapp/ui/FormValidation.kt,9/d/9dc830385a8a68c78e1321e2ecc7de883aa76ade
 t
 Dapp/src/main/java/com/example/todoapp/jsondata/di/HiltApplication.kt,4/7/47d289bc08506cee69342993b015f0cf3a87ec1c
-h
-8app/src/main/java/com/example/todoapp/model/ListModel.kt,f/9/f9f6e873346c60a959008595827c7102e6cbb4fc
 n
 >app/src/main/java/com/example/todoapp/utils/LoginPreference.kt,6/c/6c46e196080c904d705d92f765ab5c6ca5cf35ad
 î
@@ -51,13 +47,7 @@ m
 [app/src/main/java/com/example/todoapp/jsondata/data/repository/PersonalizationRepository.kt,5/6/566bb1129b9efac26d9197321aaa27190dae590c
 n
 >app/src/main/java/com/example/todoapp/jsondata/di/AppModule.kt,f/3/f369339bddf871e3d8ce4f7f0127582927582388
-Å
-Qapp/src/main/java/com/example/todoapp/ui/onBoarding/activity/SigningUpActivity.kt,3/7/37d12e98c79e20bf8d1a848e2629990f6beb6a30
-Ü
-Vapp/src/main/java/com/example/todoapp/ui/splashscreen/activity/SplashScreenActivity.kt,b/4/b4a65fcccc97b1fdb033f8abe9ddc9e819a4e9de
 Ä
 Papp/src/main/java/com/example/todoapp/jsondata/data/model/PersonalizationData.kt,9/a/9abdd98a3a7bbcaf84e4210036c4f25d34f6ddd7
 r
 Bapp/src/main/java/com/example/todoapp/jsondata/IPersonalization.kt,f/f/ff7e4f5a4d09c0b778deb75287bb86aa0655c72e
-x
-Happ/src/main/java/com/example/todoapp/ui/home/viewmodel/ListViewModel.kt,f/d/fdcb3c3bd5c2af163680f62544175be626af81c2

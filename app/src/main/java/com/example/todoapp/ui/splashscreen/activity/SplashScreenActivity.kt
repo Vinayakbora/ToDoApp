@@ -15,7 +15,7 @@ import androidx.databinding.DataBindingUtil
 import com.example.todoapp.R
 import com.example.todoapp.databinding.SplashScreenBinding
 import com.example.todoapp.ui.*
-import com.example.todoapp.ui.home.activity.MainActivity
+import com.example.todoapp.ui.home.activity.TaskActivity
 import com.example.todoapp.ui.onBoardingViewPager.activity.OnBoardingViewPagerActivity
 import com.example.todoapp.utils.LoginPreference
 
@@ -80,7 +80,7 @@ class SplashScreenActivity : AppCompatActivity() {
 
         handler.postDelayed({
             if (loginStatus) {
-                MainActivity.openMainActivity(this)
+                TaskActivity.openMainActivity(this)
                 finish()
             } else {
                 OnBoardingViewPagerActivity.openImgSliderActivity(this)

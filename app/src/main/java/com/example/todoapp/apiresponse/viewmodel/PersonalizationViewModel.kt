@@ -1,8 +1,8 @@
-package com.example.todoapp.jsondata.viewmodel
+package com.example.todoapp.apiresponse.viewmodel
 
 import androidx.lifecycle.*
-import com.example.todoapp.jsondata.data.model.ApiResponse
-import com.example.todoapp.jsondata.data.repository.PersonalizationRepository
+import com.example.todoapp.apiresponse.data.model.ApiResponse
+import com.example.todoapp.apiresponse.data.repository.PersonalizationRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

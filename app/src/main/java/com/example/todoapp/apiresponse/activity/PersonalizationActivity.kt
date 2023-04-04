@@ -1,4 +1,4 @@
-package com.example.todoapp.jsondata.activity
+package com.example.todoapp.apiresponse.activity
 
 import android.content.Context
 import android.content.Intent
@@ -10,8 +10,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.todoapp.R
 import com.example.todoapp.databinding.ActivityRetrofitDataBinding
-import com.example.todoapp.jsondata.adapter.PersonalizationAdapter
-import com.example.todoapp.jsondata.viewmodel.PersonalizationViewModel
+import com.example.todoapp.apiresponse.adapter.PersonalizationAdapter
+import com.example.todoapp.apiresponse.viewmodel.PersonalizationViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -9,29 +9,29 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.todoapp.*
-import com.example.todoapp.model.ListModel
+import com.example.todoapp.data.TaskModel
 import com.example.todoapp.utils.LoginPreference
 import com.example.todoapp.databinding.ActivityMainBinding
-import com.example.todoapp.jsondata.activity.PersonalizationActivity
-import com.example.todoapp.ui.home.adapter.ListAdapter
-import com.example.todoapp.ui.home.viewmodel.ListViewModel
+import com.example.todoapp.apiresponse.activity.PersonalizationActivity
+import com.example.todoapp.ui.home.adapter.TaskAdapter
+import com.example.todoapp.ui.home.viewmodel.TaskViewModel
 import com.example.todoapp.ui.home.fragment.TaskFragment
 import com.example.todoapp.ui.onBoarding.activity.SigningUpActivity
 import com.example.todoapp.utils.UIMode
 import com.example.todoapp.utils.convertStringToDate
 import java.util.*
 
-class MainActivity : AppCompatActivity(), TaskFragment.NewTaskListener {
+class TaskActivity : AppCompatActivity(), TaskFragment.NewTaskListener {
     companion object {
         fun openMainActivity(ctx: Context) {
-            ctx.startActivity(Intent(ctx, MainActivity::class.java))
+            ctx.startActivity(Intent(ctx, TaskActivity::class.java))
         }
     }
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var listAdapter: ListAdapter
+    private lateinit var taskAdapter: TaskAdapter
     private var loginStatus: LoginPreference? = null
-    private val viewModel: ListViewModel by viewModels()
+    private val viewModel: TaskViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,11 +41,11 @@ class MainActivity : AppCompatActivity(), TaskFragment.NewTaskListener {
         binding.activityToolbar.title = loginStatus?.getName() ?: ""
 
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
-        listAdapter = ListAdapter(this,viewModel)
-        binding.recyclerView.adapter = listAdapter
+        taskAdapter = TaskAdapter(this,viewModel)
+        binding.recyclerView.adapter = taskAdapter
 
         viewModel.items.observe(this) { items ->
-            listAdapter.tList = items
+            taskAdapter.tList = items
         }
 
         binding.logoutBtn.setOnClickListener {
@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity(), TaskFragment.NewTaskListener {
         }
     }
 
-    private val dateComparator = Comparator<ListModel> { date1, date2 ->
+    private val dateComparator = Comparator<TaskModel> { date1, date2 ->
         if (date1.date.isNotEmpty() && date2.date.isNotEmpty())
             return@Comparator convertStringToDate(date2.date)?.let {
                 convertStringToDate(date1.date)?.time?.compareTo(it.time)
@@ -87,8 +87,8 @@ class MainActivity : AppCompatActivity(), TaskFragment.NewTaskListener {
 
     @SuppressLint("NotifyDataSetChanged")
     private fun sortTask() {
-        Collections.sort( listAdapter.tList, dateComparator)
-        listAdapter.notifyDataSetChanged()
+        Collections.sort( taskAdapter.tList, dateComparator)
+        taskAdapter.notifyDataSetChanged()
     }
 
     fun toggleUI(mode: UIMode) {
@@ -97,14 +97,14 @@ class MainActivity : AppCompatActivity(), TaskFragment.NewTaskListener {
         binding.showDataFab.visibility = mode.dataFabVisibility
     }
 
-    override fun onNewTask(task: ListModel) {
-        viewModel.addItem(ListModel(task.title, task.desc, task.date))
+    override fun onNewTask(task: TaskModel) {
+        viewModel.addItem(TaskModel(0,task.title, task.desc, task.date))
     }
 
-    override fun onEditTask(task: ListModel, pos: Int) {
-        listAdapter.tList[pos].title = task.title
-        listAdapter.tList[pos].desc = task.desc
-        listAdapter.tList[pos].date = task.date
-        listAdapter.notifyItemChanged(pos)
+    override fun onEditTask(task: TaskModel, pos: Int) {
+        taskAdapter.tList[pos].title = task.title
+        taskAdapter.tList[pos].desc = task.desc
+        taskAdapter.tList[pos].date = task.date
+        taskAdapter.notifyItemChanged(pos)
     }
 }

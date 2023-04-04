@@ -1,8 +1,8 @@
-package com.example.todoapp.jsondata.data.repository
+package com.example.todoapp.apiresponse.data.repository
 
 import android.util.Log
-import com.example.todoapp.jsondata.IPersonalization
-import com.example.todoapp.jsondata.data.model.ApiResponse
+import com.example.todoapp.apiresponse.IPersonalization
+import com.example.todoapp.apiresponse.data.model.ApiResponse
 import javax.inject.Inject
 
 class PersonalizationRepository @Inject constructor(

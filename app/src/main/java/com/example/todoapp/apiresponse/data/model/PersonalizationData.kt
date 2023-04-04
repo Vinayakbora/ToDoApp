@@ -1,4 +1,4 @@
-package com.example.todoapp.jsondata.data.model
+package com.example.todoapp.apiresponse.data.model
 
 import com.google.gson.annotations.SerializedName
 

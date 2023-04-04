@@ -11,17 +11,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todoapp.R
-import com.example.todoapp.model.ListModel
+import com.example.todoapp.data.TaskModel
 import com.example.todoapp.databinding.ListItemsBinding
-import com.example.todoapp.ui.home.viewmodel.ListViewModel
-import com.example.todoapp.ui.home.activity.MainActivity
+import com.example.todoapp.ui.home.viewmodel.TaskViewModel
+import com.example.todoapp.ui.home.activity.TaskActivity
 import com.example.todoapp.ui.home.fragment.TaskFragment
 import com.example.todoapp.utils.UIMode
 import com.google.android.material.snackbar.Snackbar
 
-class ListAdapter(private val activity: MainActivity, private val viewModel: ListViewModel) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
+class TaskAdapter(private val activity: TaskActivity, private val viewModel: TaskViewModel) : RecyclerView.Adapter<TaskAdapter.ViewHolder>() {
 
-     var tList: List<ListModel> = emptyList()
+     var tList: List<TaskModel> = emptyList()
         @SuppressLint("NotifyDataSetChanged")
         set(value) {
             field = value

@@ -11,7 +11,7 @@ import com.example.todoapp.utils.LoginPreference
 import com.example.todoapp.R
 import com.example.todoapp.databinding.ActivitySigningUpBinding
 import com.example.todoapp.ui.FormValidation
-import com.example.todoapp.ui.home.activity.MainActivity
+import com.example.todoapp.ui.home.activity.TaskActivity
 import java.util.*
 
 private const val minDateTime : Long = 1893000000000
@@ -73,7 +73,7 @@ class SigningUpActivity : AppCompatActivity() {
     private fun checkValidation(){
         if(isNameValidated  && isNumberValidated && isDateValidated){
             loginStatus?.saveLoginStatus()
-            MainActivity.openMainActivity(this)
+            TaskActivity.openMainActivity(this)
             finish()
         }
     }
