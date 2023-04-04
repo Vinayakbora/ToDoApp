@@ -9,23 +9,26 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.fragment.TaskFragment">
 
-    <ImageView
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/doneBtn"
+        style="@style/Button.Done"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="300dp"
-        android:layout_marginTop="20dp"
-        android:contentDescription="@string/done_button"
-        android:src="@drawable/done"
-        tools:ignore="ImageContrastCheck,RedundantDescriptionCheck" />
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center_horizontal"
+        app:strokeColor="@color/black"
+        app:strokeWidth="2dp"
+        android:backgroundTint="@color/blue_green"
+        android:text="@string/Add"
+        android:textAllCaps="false" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/title"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="250dp"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginTop="120dp"
+        android:layout_gravity="center_horizontal"
         android:textColorHint="#000000">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -47,9 +50,8 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
         android:layout_marginTop="220dp"
-        android:layout_marginEnd="106dp"
+        android:layout_gravity="center_horizontal"
         android:textColorHint="#000000">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -66,15 +68,13 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/date_of_completion"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="520dp"
-        android:layout_marginEnd="104dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="500dp"
         app:layout_constraintEnd_toEndOf="parent"
         android:textAlignment="center"
         app:layout_constraintStart_toStartOf="parent"
