@@ -20,8 +20,10 @@ import com.example.todoapp.ui.home.fragment.TaskFragment
 import com.example.todoapp.ui.onBoarding.activity.SigningUpActivity
 import com.example.todoapp.utils.UIMode
 import com.example.todoapp.utils.convertStringToDate
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
+@AndroidEntryPoint
 class TaskActivity : AppCompatActivity(), TaskFragment.NewTaskListener {
     companion object {
         fun openMainActivity(ctx: Context) {

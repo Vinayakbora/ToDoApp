@@ -1,23 +1,17 @@
 package com.example.todoapp.ui.home.viewmodel
 
-import android.app.Application
 import androidx.lifecycle.*
-import com.example.todoapp.data.TaskDatabase
 import com.example.todoapp.data.TaskModel
 import com.example.todoapp.data.TaskRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class TaskViewModel (application: Application) : AndroidViewModel(application) {
+@HiltViewModel
+class TaskViewModel @Inject constructor (private val repository: TaskRepository) : ViewModel() {
 
-    private val repository: TaskRepository
-    val items: LiveData<List<TaskModel>>
-
-    init {
-        val dao = TaskDatabase.getDatabase(application).taskDao()
-        repository = TaskRepository(dao)
-        items = repository.allTasks
-    }
+    val items: LiveData<List<TaskModel>> = repository.allTasks
 
     fun insertNote(task: TaskModel) = viewModelScope.launch(Dispatchers.IO) {
         repository.insert(task)

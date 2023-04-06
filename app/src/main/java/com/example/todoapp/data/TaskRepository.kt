@@ -1,8 +1,9 @@
 package com.example.todoapp.data
 
 import androidx.lifecycle.LiveData
+import javax.inject.Inject
 
-class TaskRepository(private val taskDao: TaskDao) {
+class TaskRepository @Inject constructor(private val taskDao: TaskDao) {
 
     val allTasks: LiveData<List<TaskModel>> = taskDao.getAllTasks()
 

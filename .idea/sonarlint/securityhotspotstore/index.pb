@@ -37,8 +37,6 @@ Q.idea/sonarlint/securityhotspotstore/8/8/88a9255124c95bdc913197c120a8d560edc59c
 dapp/src/main/java/com/example/todoapp/ui/onBoardingViewPager/fragment/OnBoardingViewPagerFragment.kt,2/1/21dd93a9aa88ca6466cd6b3d09e02e7a19cd7caf
 
 Qapp/src/main/java/com/example/todoapp/ui/onBoarding/activity/SigningUpActivity.kt,3/7/37d12e98c79e20bf8d1a848e2629990f6beb6a30
-q
-Aapp/src/main/java/com/example/todoapp/apiresponse/di/AppModule.kt,4/d/4db2e25a056cbd1cbd6470059322269cd3208995
 u
 Eapp/src/main/java/com/example/todoapp/apiresponse/IPersonalization.kt,9/a/9aa7d1bcde95eda60e4927bb0ce5d12153fa7fc4
 ƒ
@@ -47,11 +45,5 @@ Sapp/src/main/java/com/example/todoapp/apiresponse/data/model/PersonalizationDat
 Sapp/src/main/java/com/example/todoapp/apiresponse/adapter/PersonalizationAdapter.kt,5/9/59953f369a67801ce35673a4400edbd70f80f5cb
 †
 Vapp/src/main/java/com/example/todoapp/ui/splashscreen/activity/SplashScreenActivity.kt,b/4/b4a65fcccc97b1fdb033f8abe9ddc9e819a4e9de
-w
-Gapp/src/main/java/com/example/todoapp/apiresponse/di/HiltApplication.kt,4/d/4d19eb3b42732c036954fe4c4100b097e44c1ab2
-‡
-Wapp/src/main/java/com/example/todoapp/apiresponse/viewmodel/PersonalizationViewModel.kt,9/5/951fba566bf7db252581b4bb34dbb364d9eaa67a
-Ž
-^app/src/main/java/com/example/todoapp/apiresponse/data/repository/PersonalizationRepository.kt,7/1/714ff9b0880cee3ecae4c96f585cde9dadb8afc0
 n
 >app/src/main/java/com/example/todoapp/utils/LoginPreference.kt,6/c/6c46e196080c904d705d92f765ab5c6ca5cf35ad
