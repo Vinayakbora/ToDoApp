@@ -13,6 +13,7 @@ import com.example.todoapp.data.TaskModel
 import com.example.todoapp.utils.LoginPreference
 import com.example.todoapp.databinding.ActivityMainBinding
 import com.example.todoapp.apiresponse.activity.PersonalizationActivity
+import com.example.todoapp.location.activity.LocationActivity
 import com.example.todoapp.ui.home.adapter.TaskAdapter
 import com.example.todoapp.ui.home.viewmodel.TaskViewModel
 import com.example.todoapp.ui.home.fragment.TaskFragment
@@ -72,7 +73,11 @@ class TaskActivity : AppCompatActivity(), TaskFragment.NewTaskListener {
         }
 
         binding.showDataFab.setOnClickListener {
-            PersonalizationActivity.openRetrofitActivity(this)
+            PersonalizationActivity.openPersonalizationActivity(this)
+        }
+
+        binding.showLocationFab.setOnClickListener{
+            LocationActivity.openLocationActivity(this)
         }
     }
 
@@ -92,6 +97,7 @@ class TaskActivity : AppCompatActivity(), TaskFragment.NewTaskListener {
     }
 
     fun toggleUI(mode: UIMode) {
+        binding.showLocationFab.visibility = mode.locationFabVisibility
         binding.addFab.visibility = mode.mAddFabVisibility
         binding.recyclerView.visibility = mode.recyclerViewVisibility
         binding.showDataFab.visibility = mode.dataFabVisibility

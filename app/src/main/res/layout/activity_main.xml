@@ -75,6 +75,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             tools:ignore="ImageContrastCheck" />
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/showLocation_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="176dp"
+            android:contentDescription="@string/location"
+            android:src="@drawable/baseline_map_24"
+            app:fabSize="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="ImageContrastCheck" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"

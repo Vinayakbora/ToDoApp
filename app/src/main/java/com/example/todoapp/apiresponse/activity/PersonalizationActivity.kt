@@ -21,7 +21,7 @@ class PersonalizationActivity : AppCompatActivity() {
     private val viewModel: PersonalizationViewModel by viewModels()
 
     companion object{
-        fun openRetrofitActivity(ctx: Context){
+        fun openPersonalizationActivity(ctx: Context){
             ctx.startActivity(Intent(ctx, PersonalizationActivity::class.java))
         }
     }

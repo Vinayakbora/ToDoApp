@@ -1,5 +1,6 @@
 package com.example.todoapp.data
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
@@ -9,7 +10,7 @@ interface TaskDao {
     suspend fun insertTask(task: TaskModel)
 
     @Query("SELECT * FROM task_table")
-    fun getAllTasks(): List<TaskModel>
+    fun getAllTasks(): LiveData<List<TaskModel>>
 
     @Update
     suspend fun updateTask(task: TaskModel)

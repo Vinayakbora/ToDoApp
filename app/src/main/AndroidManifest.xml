@@ -3,8 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools">
     <!-- permissions for INTERNET -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
+        android:name=".apiresponse.di.HiltApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -12,15 +15,20 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.ToDoApp"
-        android:name=".apiresponse.di.HiltApplication"
         tools:targetApi="31">
+        <activity
+            android:name=".location.activity.LocationActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme"/>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
         <activity
             android:name=".apiresponse.activity.PersonalizationActivity"
             android:exported="false"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".ui.onBoarding.activity.SigningUpActivity"
             android:exported="false"
@@ -48,4 +56,5 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
     </application>
+
 </manifest>
