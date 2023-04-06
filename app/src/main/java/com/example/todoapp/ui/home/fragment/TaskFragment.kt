@@ -24,10 +24,10 @@ class TaskFragment : Fragment() {
     private lateinit var binding: FragmentTaskBinding
     private var listener: NewTaskListener? = null
     private var modeEditing = false
-    private var editingPos: Int? = null
     private lateinit var editTitleText: String
     private lateinit var editDescText: String
     private lateinit var editDocText: String
+    private var editPos: Int = 0
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -66,7 +66,6 @@ class TaskFragment : Fragment() {
             arguments?.getParcelable("item")
         }
 
-        editingPos = arguments?.getInt("itemPos")
 
         ediTaskModel?.let {
             modeEditing = true
@@ -83,15 +82,18 @@ class TaskFragment : Fragment() {
             editTitleText =  binding.titleText.text.toString()
             editDescText = binding.descriptionText.text.toString()
             editDocText = binding.dateOfCompletionText.text.toString()
+            ediTaskModel?.let { editPos=it.id }
 
             val imm: InputMethodManager = requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow( binding.doneBtn.windowToken, 0)
 
             if (modeEditing) {
-                editingPos?.let { pos -> listener?.onEditTask(TaskModel(0,editTitleText, editDescText, editDocText), pos) }
+              ediTaskModel?.let {
+                  listener?.onEditTask(TaskModel(editPos,editTitleText, editDescText, editDocText))
+              }
             }
             else
-                listener?.onNewTask(task = TaskModel(0,editTitleText, editDescText, editDocText))
+                listener?.onNewTask(TaskModel(0,editTitleText, editDescText, editDocText))
             activity?.onBackPressedDispatcher?.onBackPressed()
         }
         return binding.root
@@ -99,7 +101,7 @@ class TaskFragment : Fragment() {
 
     interface NewTaskListener {
         fun onNewTask(task: TaskModel)
-        fun onEditTask(task: TaskModel, pos: Int)
+        fun onEditTask(task: TaskModel)
     }
 
     private fun completionDatePicker(){

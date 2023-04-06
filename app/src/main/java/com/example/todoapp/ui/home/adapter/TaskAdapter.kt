@@ -56,7 +56,6 @@ class TaskAdapter(private val activity: TaskActivity, private val viewModel: Tas
             val inputFragment = TaskFragment()
             val bundle = Bundle()
             bundle.putParcelable("item", itemsModel)
-            bundle.putInt("itemPos", holder.adapterPosition)
             inputFragment.arguments = bundle
             fragmentManager.beginTransaction()
                 .setCustomAnimations(R.anim.zoom_in,0,0,0)
@@ -66,12 +65,12 @@ class TaskAdapter(private val activity: TaskActivity, private val viewModel: Tas
         }
 
         holder.deleteBtn.setOnClickListener{
-            viewModel.removeItem(itemsModel)
+            viewModel.deleteNote(itemsModel)
 
             val clMain =activity.findViewById<ConstraintLayout>(R.id.clContainer)
             Snackbar.make(clMain, "Task is Deleted", Snackbar.LENGTH_LONG)
                 .setAction("UNDO") {
-                    viewModel.addItem(itemsModel)
+                    viewModel.insertNote(itemsModel)
                 }.show()
         }
     }

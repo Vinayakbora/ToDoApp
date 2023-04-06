@@ -104,13 +104,10 @@ class TaskActivity : AppCompatActivity(), TaskFragment.NewTaskListener {
     }
 
     override fun onNewTask(task: TaskModel) {
-        viewModel.addItem(TaskModel(0,task.title, task.desc, task.date))
+        viewModel.insertNote(task)
     }
 
-    override fun onEditTask(task: TaskModel, pos: Int) {
-        taskAdapter.tList[pos].title = task.title
-        taskAdapter.tList[pos].desc = task.desc
-        taskAdapter.tList[pos].date = task.date
-        taskAdapter.notifyItemChanged(pos)
+    override fun onEditTask(task: TaskModel) {
+        viewModel.updateNote(TaskModel(task.id,task.title,task.desc,task.date))
     }
 }

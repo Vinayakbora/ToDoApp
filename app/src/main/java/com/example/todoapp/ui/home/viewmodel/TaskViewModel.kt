@@ -1,26 +1,34 @@
 package com.example.todoapp.ui.home.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.*
+import com.example.todoapp.data.TaskDatabase
 import com.example.todoapp.data.TaskModel
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
+import com.example.todoapp.data.TaskRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-@HiltViewModel
-class TaskViewModel @Inject constructor() : ViewModel(){
-    private val _items = MutableLiveData<List<TaskModel>>(mutableListOf())
-    val items: LiveData<List<TaskModel>> = _items
+class TaskViewModel (application: Application) : AndroidViewModel(application) {
 
-    fun addItem(item: TaskModel) {
-        val currentList = _items.value.orEmpty().toMutableList()
-        currentList.add(item)
-        _items.value = currentList.toList()
+    private val repository: TaskRepository
+    val items: LiveData<List<TaskModel>>
+
+    init {
+        val dao = TaskDatabase.getDatabase(application).taskDao()
+        repository = TaskRepository(dao)
+        items = repository.allTasks
     }
 
-    fun removeItem(item: TaskModel) {
-        val currentList = _items.value.orEmpty().toMutableList()
-        currentList.remove(item)
-        _items.value = currentList.toList()
+    fun insertNote(task: TaskModel) = viewModelScope.launch(Dispatchers.IO) {
+        repository.insert(task)
+    }
+
+    fun deleteNote(task: TaskModel) = viewModelScope.launch(Dispatchers.IO) {
+        repository.delete(task)
+    }
+
+    fun updateNote(task: TaskModel) = viewModelScope.launch(Dispatchers.IO) {
+        repository.update(task)
     }
 }
+

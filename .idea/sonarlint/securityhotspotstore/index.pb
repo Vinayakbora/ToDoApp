@@ -53,13 +53,5 @@ Gapp/src/main/java/com/example/todoapp/apiresponse/di/HiltApplication.kt,4/d/4d
 Wapp/src/main/java/com/example/todoapp/apiresponse/viewmodel/PersonalizationViewModel.kt,9/5/951fba566bf7db252581b4bb34dbb364d9eaa67a
 Ž
 ^app/src/main/java/com/example/todoapp/apiresponse/data/repository/PersonalizationRepository.kt,7/1/714ff9b0880cee3ecae4c96f585cde9dadb8afc0
-g
-7app/src/main/java/com/example/todoapp/data/TaskModel.kt,d/3/d3503858ec061312c697b87a32dc54703c5af900
 n
 >app/src/main/java/com/example/todoapp/utils/LoginPreference.kt,6/c/6c46e196080c904d705d92f765ab5c6ca5cf35ad
-x
-Happ/src/main/java/com/example/todoapp/ui/home/viewmodel/TaskViewModel.kt,f/9/f9a065bc0d0092e76e9cf9ba226a41b446194713
-t
-Dapp/src/main/java/com/example/todoapp/ui/home/adapter/TaskAdapter.kt,7/9/79fc01bfaa7c1d58262fe5a889f4d9a042fd1966
-v
-Fapp/src/main/java/com/example/todoapp/ui/home/fragment/TaskFragment.kt,1/1/1167265e590da6fe3e28d53f9d5ae18edea419ac
