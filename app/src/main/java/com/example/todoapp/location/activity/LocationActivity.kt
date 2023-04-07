@@ -22,14 +22,19 @@ class LocationActivity : AppCompatActivity() {
         }
     }
 
-    private lateinit var binding: ActivityLocationBinding
+    private val binding: ActivityLocationBinding by lazy {
+        DataBindingUtil.setContentView(
+            this,
+            R.layout.activity_location
+        )
+    }
+
     private val fineLocation = Manifest.permission.ACCESS_FINE_LOCATION
     private val coarseLocation = Manifest.permission.ACCESS_COARSE_LOCATION
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_location)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
         FetchLocation.getLastLocation(

@@ -9,6 +9,7 @@ import com.example.todoapp.location.activity.LocationActivity
 import com.google.android.gms.location.FusedLocationProviderClient
 import java.util.*
 
+@Suppress("DEPRECATION")
 class FetchLocation {
     companion object {
         fun getLastLocation(
