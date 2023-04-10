@@ -43,10 +43,6 @@ Eapp/src/main/java/com/example/todoapp/apiresponse/IPersonalization.kt,9/a/9aa7
 Sapp/src/main/java/com/example/todoapp/apiresponse/data/model/PersonalizationData.kt,4/f/4f40124b2c203d251291879a0320ea9cb716d4c4
 ƒ
 Sapp/src/main/java/com/example/todoapp/apiresponse/adapter/PersonalizationAdapter.kt,5/9/59953f369a67801ce35673a4400edbd70f80f5cb
-†
-Vapp/src/main/java/com/example/todoapp/ui/splashscreen/activity/SplashScreenActivity.kt,b/4/b4a65fcccc97b1fdb033f8abe9ddc9e819a4e9de
-n
->app/src/main/java/com/example/todoapp/utils/LoginPreference.kt,6/c/6c46e196080c904d705d92f765ab5c6ca5cf35ad
 v
 Fapp/src/main/java/com/example/todoapp/ui/home/fragment/TaskFragment.kt,1/1/1167265e590da6fe3e28d53f9d5ae18edea419ac
 q
@@ -57,9 +53,17 @@ Aapp/src/main/java/com/example/todoapp/apiresponse/di/AppModule.kt,4/d/4db2e25a
 Wapp/src/main/java/com/example/todoapp/apiresponse/viewmodel/PersonalizationViewModel.kt,9/5/951fba566bf7db252581b4bb34dbb364d9eaa67a
 h
 8app/src/main/java/com/example/todoapp/HiltApplication.kt,6/1/61fbc4aeefa98f64a8af4343424e665203eea426
-P
- app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
 j
 :app/src/main/java/com/example/todoapp/data/TaskDatabase.kt,2/a/2a24c719ded40b715ad78888793038c178902ad7
 g
 7app/src/main/java/com/example/todoapp/data/TaskModel.kt,d/3/d3503858ec061312c697b87a32dc54703c5af900
+t
+Dapp/src/main/java/com/example/todoapp/ui/home/adapter/TaskAdapter.kt,7/9/79fc01bfaa7c1d58262fe5a889f4d9a042fd1966
+e
+5app/src/main/java/com/example/todoapp/data/TaskDao.kt,0/6/0640f8b51d80d768c368b12e7e9907e5ced41868
+l
+<app/src/main/java/com/example/todoapp/data/TaskRepository.kt,b/b/bb1c11118c3e2820da53fe3fb5de75f63ddcafcc
+x
+Happ/src/main/java/com/example/todoapp/ui/home/viewmodel/TaskViewModel.kt,f/9/f9a065bc0d0092e76e9cf9ba226a41b446194713
+e
+5app/src/main/java/com/example/todoapp/utils/UIMode.kt,3/9/39fadc4b7c6ee66b956c7d93c290719b1fcd7a36

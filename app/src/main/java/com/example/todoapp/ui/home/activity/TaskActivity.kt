@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,7 +17,7 @@ import com.example.todoapp.ui.home.adapter.TaskAdapter
 import com.example.todoapp.ui.home.viewmodel.TaskViewModel
 import com.example.todoapp.ui.home.fragment.TaskFragment
 import com.example.todoapp.ui.onBoarding.activity.SigningUpActivity
-import com.example.todoapp.utils.Sorting
+import com.example.todoapp.utils.SortAlertDialog
 import com.example.todoapp.utils.UIMode
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -34,7 +33,6 @@ class TaskActivity : AppCompatActivity(), TaskFragment.NewTaskListener {
     private lateinit var taskAdapter: TaskAdapter
     private var loginStatus: LoginPreference? = null
     private val viewModel: TaskViewModel by viewModels()
-    private var sortType: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,37 +55,8 @@ class TaskActivity : AppCompatActivity(), TaskFragment.NewTaskListener {
             finish()
         }
 
-        val checkedItem = intArrayOf(-1)
         binding.filter.setOnClickListener {
-            val alertDialog = AlertDialog.Builder(this)
-            alertDialog.setTitle("Choose Sorting Type")
-
-            val listItems = arrayOf("Date (Ascending)", "Date (Descending)", "Title (Ascending)", "Title (Descending)")
-            alertDialog.setSingleChoiceItems(listItems, checkedItem[0]) { dialog, which ->
-                checkedItem[0] = which
-                if(listItems[which]==listItems[0]){
-                    sortType = 1
-                }
-                else if(listItems[which]==listItems[1]){
-                    sortType = 2
-                }
-                else if(listItems[which]==listItems[2]){
-                    sortType = 3
-                }
-                else if (listItems[which]==listItems[3]){
-                    sortType = 4
-                }
-
-                Sorting(taskAdapter).sortTask(sortType)
-                dialog.dismiss()
-            }
-
-            alertDialog.setNegativeButton("Cancel") { _, _ -> }
-
-            val customAlertDialog = alertDialog.create()
-            customAlertDialog.show()
-
-
+            SortAlertDialog(taskAdapter).showSortTypes(this)
         }
 
         binding.addFab.setOnClickListener {
