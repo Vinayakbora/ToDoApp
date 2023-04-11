@@ -7,7 +7,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light"
+    android:background="@drawable/background_3"
     tools:context=".ui.onBoarding.activity.SigningUpActivity">
 
     <ImageView
@@ -21,7 +21,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/sign_up"
-        android:contentDescription="@string/signup_image" />
+        android:contentDescription="@string/signup_image"
+        app:tint="@color/white" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/nameText1"
@@ -30,12 +31,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:autofillHints=""
-        android:background="@color/light"
         android:inputType="text"
-        android:textColorHint="#000000"
+        android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView">
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:hintTextColor="@color/white">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/nameText"
@@ -45,8 +46,8 @@
             android:fontFamily="@font/montserrat_bold_italic"
             android:gravity="center_horizontal"
             android:hint="@string/your_name"
-            android:textColor="@color/black"
-            android:textCursorDrawable="@color/black" />
+            android:textColor="@color/white"
+            android:textCursorDrawable="@null"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -57,12 +58,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:autofillHints=""
-        android:background="@color/light"
         android:inputType="phone"
-        android:textColorHint="#000000"
+        android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameText1">
+        app:layout_constraintTop_toBottomOf="@+id/nameText1"
+        app:hintTextColor="@color/white">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/numberText"
@@ -73,8 +74,8 @@
             android:gravity="center_horizontal"
             android:hint="@string/contact_number"
             android:inputType="phone"
-            android:textColor="@color/black"
-            android:textCursorDrawable="@color/black" />
+            android:textColor="@color/white"
+            android:textCursorDrawable="@null" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -85,13 +86,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:autofillHints=""
-        android:background="@color/light"
         android:inputType="date"
         android:textAlignment="center"
-        android:textColorHint="#000000"
+        android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/numberText1">
+        app:layout_constraintTop_toBottomOf="@+id/numberText1"
+        app:hintTextColor="@color/white">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/dobText"
@@ -105,8 +106,7 @@
             android:fontFamily="@font/montserrat_bold_italic"
             android:gravity="center_horizontal"
             android:hint="@string/d_o_b"
-            android:textColor="@color/black"
-            android:textCursorDrawable="@color/black" />
+            android:textColor="@color/white" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -117,6 +117,7 @@
         android:layout_marginStart="158dp"
         android:layout_marginEnd="159dp"
         android:layout_marginBottom="80dp"
+        android:fontFamily="@font/montserrat_bold_italic"
         android:text="@string/sign_in"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

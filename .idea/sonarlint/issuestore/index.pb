@@ -41,8 +41,6 @@ Eapp/src/main/java/com/example/todoapp/apiresponse/IPersonalization.kt,9/a/9aa7
 Sapp/src/main/java/com/example/todoapp/apiresponse/adapter/PersonalizationAdapter.kt,5/9/59953f369a67801ce35673a4400edbd70f80f5cb
 É
 Sapp/src/main/java/com/example/todoapp/apiresponse/data/model/PersonalizationData.kt,4/f/4f40124b2c203d251291879a0320ea9cb716d4c4
-Å
-Qapp/src/main/java/com/example/todoapp/ui/onBoarding/activity/SigningUpActivity.kt,3/7/37d12e98c79e20bf8d1a848e2629990f6beb6a30
 q
 Aapp/src/main/java/com/example/todoapp/apiresponse/di/AppModule.kt,4/d/4db2e25a056cbd1cbd6470059322269cd3208995
 h
@@ -53,8 +51,6 @@ j
 ^app/src/main/java/com/example/todoapp/apiresponse/data/repository/PersonalizationRepository.kt,7/1/714ff9b0880cee3ecae4c96f585cde9dadb8afc0
 á
 Wapp/src/main/java/com/example/todoapp/apiresponse/viewmodel/PersonalizationViewModel.kt,9/5/951fba566bf7db252581b4bb34dbb364d9eaa67a
-v
-Fapp/src/main/java/com/example/todoapp/ui/home/fragment/TaskFragment.kt,1/1/1167265e590da6fe3e28d53f9d5ae18edea419ac
 g
 7app/src/main/java/com/example/todoapp/data/TaskModel.kt,d/3/d3503858ec061312c697b87a32dc54703c5af900
 t

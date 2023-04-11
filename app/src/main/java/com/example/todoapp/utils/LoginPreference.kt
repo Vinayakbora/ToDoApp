@@ -3,12 +3,20 @@ package com.example.todoapp.utils
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.core.content.edit
+import androidx.security.crypto.EncryptedSharedPreferences
+import androidx.security.crypto.MasterKeys
 
 class LoginPreference(val context: Context) {
 
     private val loginStatus = "loginFlag"
     private val userName = "username"
-    private val sharedPrefs: SharedPreferences = context.getSharedPreferences("flag", 0)
+    private val sharedPrefs: SharedPreferences = EncryptedSharedPreferences.create(
+        "SHARED_PREFERENCES",
+        MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC),
+        context,
+        EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+        EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+    )
 
     fun saveLoginStatus() {
         sharedPrefs.edit {

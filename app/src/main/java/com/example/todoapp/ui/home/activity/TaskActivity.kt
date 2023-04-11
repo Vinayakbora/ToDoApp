@@ -71,21 +71,21 @@ class TaskActivity : AppCompatActivity(), TaskFragment.NewTaskListener {
                 .add(R.id.fragment_container, TaskFragment::class.java, null).addToBackStack(null)
                 .commit()
         }
-
-        binding.showDataFab.setOnClickListener {
-            PersonalizationActivity.openPersonalizationActivity(this)
-        }
-
-        binding.showLocationFab.setOnClickListener{
-            LocationActivity.openLocationActivity(this)
-        }
+//
+//        binding.showDataFab.setOnClickListener {
+//            PersonalizationActivity.openPersonalizationActivity(this)
+//        }
+//
+//        binding.showLocationFab.setOnClickListener{
+//            LocationActivity.openLocationActivity(this)
+//        }
     }
 
     fun toggleUI(mode: UIMode) {
-        binding.showLocationFab.visibility = mode.locationFabVisibility
+//        binding.showLocationFab.visibility = mode.locationFabVisibility
         binding.addFab.visibility = mode.mAddFabVisibility
         binding.recyclerView.visibility = mode.recyclerViewVisibility
-        binding.showDataFab.visibility = mode.dataFabVisibility
+//        binding.showDataFab.visibility = mode.dataFabVisibility
     }
 
     override fun onNewTask(task: TaskModel) {
