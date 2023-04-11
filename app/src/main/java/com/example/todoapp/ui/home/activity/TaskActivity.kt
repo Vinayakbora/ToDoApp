@@ -13,8 +13,6 @@ import androidx.work.workDataOf
 import com.example.todoapp.*
 import com.example.todoapp.data.TaskModel
 import com.example.todoapp.databinding.ActivityMainBinding
-import com.example.todoapp.apiresponse.activity.PersonalizationActivity
-import com.example.todoapp.location.activity.LocationActivity
 import com.example.todoapp.ui.home.adapter.TaskAdapter
 import com.example.todoapp.ui.home.viewmodel.TaskViewModel
 import com.example.todoapp.ui.home.fragment.TaskFragment
@@ -74,15 +72,6 @@ class TaskActivity : AppCompatActivity(), TaskFragment.NewTaskListener {
                 .commit()
         }
 
-
-        binding.showDataFab.setOnClickListener {
-            PersonalizationActivity.openPersonalizationActivity(this)
-        }
-
-        binding.showLocationFab.setOnClickListener{
-            LocationActivity.openLocationActivity(this)
-        }
-
     }
 
     private fun createWorkRequest(message: String,timeDelayInSeconds: Long  ) {
@@ -99,10 +88,8 @@ class TaskActivity : AppCompatActivity(), TaskFragment.NewTaskListener {
     }
 
     fun toggleUI(mode: UIMode) {
-        binding.showLocationFab.visibility = mode.locationFabVisibility
         binding.addFab.visibility = mode.mAddFabVisibility
         binding.recyclerView.visibility = mode.recyclerViewVisibility
-        binding.showDataFab.visibility = mode.dataFabVisibility
     }
 
     override fun onNewTask(task: TaskModel) {
