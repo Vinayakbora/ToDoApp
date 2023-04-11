@@ -14,7 +14,7 @@
             android:id="@+id/activityToolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/md_theme_light_primaryContainer"
+            android:background="@drawable/appbar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:title="@string/toolbarTitle"
@@ -31,14 +31,14 @@
                 android:contentDescription="@string/filter"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/filter" />
+                app:srcCompat="@drawable/filter_list" />
 
             <ImageView
                 android:id="@+id/logoutBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/logout"
-                app:srcCompat="@drawable/log_out" />
+                app:srcCompat="@drawable/logout" />
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -55,7 +55,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:contentDescription="@string/add_checklist"
-            android:src="@drawable/baseline_edit_24"
+            android:src="@drawable/baseline_add"
             app:fabSize="normal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

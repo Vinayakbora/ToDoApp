@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/actionSort"
-        android:icon="@drawable/filter"
+        android:icon="@drawable/filter_list"
         android:orderInCategory="100"
         app:showAsAction="ifRoom"
         android:title="@string/sort" />
 
     <item
         android:id="@+id/actionLogout"
-        android:icon="@drawable/log_out"
+        android:icon="@drawable/logout"
         android:title="@string/logout"
         android:orderInCategory="200"
         app:showAsAction="always"/>

@@ -34,17 +34,17 @@
             android:id="@+id/editTask"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_weight="1"
             android:contentDescription="@string/edit_button"
-            app:srcCompat="@drawable/edit_task"
+            app:srcCompat="@drawable/edit"
             tools:ignore="RedundantDescriptionCheck,ImageContrastCheck" />
 
         <ImageView
             android:id="@+id/deleteTask"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_weight="1"
             android:contentDescription="@string/delete_button"
             app:srcCompat="@drawable/delete"
