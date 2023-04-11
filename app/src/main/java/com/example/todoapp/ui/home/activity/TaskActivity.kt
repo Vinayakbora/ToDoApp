@@ -7,9 +7,11 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
+import androidx.work.workDataOf
 import com.example.todoapp.*
 import com.example.todoapp.data.TaskModel
-import com.example.todoapp.utils.LoginPreference
 import com.example.todoapp.databinding.ActivityMainBinding
 import com.example.todoapp.apiresponse.activity.PersonalizationActivity
 import com.example.todoapp.location.activity.LocationActivity
@@ -17,9 +19,9 @@ import com.example.todoapp.ui.home.adapter.TaskAdapter
 import com.example.todoapp.ui.home.viewmodel.TaskViewModel
 import com.example.todoapp.ui.home.fragment.TaskFragment
 import com.example.todoapp.ui.onBoarding.activity.SigningUpActivity
-import com.example.todoapp.utils.SortAlertDialog
-import com.example.todoapp.utils.UIMode
+import com.example.todoapp.utils.*
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
 class TaskActivity : AppCompatActivity(), TaskFragment.NewTaskListener {
@@ -71,28 +73,52 @@ class TaskActivity : AppCompatActivity(), TaskFragment.NewTaskListener {
                 .add(R.id.fragment_container, TaskFragment::class.java, null).addToBackStack(null)
                 .commit()
         }
-//
-//        binding.showDataFab.setOnClickListener {
-//            PersonalizationActivity.openPersonalizationActivity(this)
-//        }
-//
-//        binding.showLocationFab.setOnClickListener{
-//            LocationActivity.openLocationActivity(this)
-//        }
+
+
+        binding.showDataFab.setOnClickListener {
+            PersonalizationActivity.openPersonalizationActivity(this)
+        }
+
+        binding.showLocationFab.setOnClickListener{
+            LocationActivity.openLocationActivity(this)
+        }
+
+    }
+
+    private fun createWorkRequest(message: String,timeDelayInSeconds: Long  ) {
+        val myWorkRequest = OneTimeWorkRequestBuilder<ReminderWorker>()
+            .setInitialDelay(timeDelayInSeconds, TimeUnit.SECONDS)
+            .setInputData(workDataOf(
+                "title" to "Reminder",
+                "message" to message,
+            )
+            )
+            .build()
+
+        WorkManager.getInstance(this).enqueue(myWorkRequest)
     }
 
     fun toggleUI(mode: UIMode) {
-//        binding.showLocationFab.visibility = mode.locationFabVisibility
+        binding.showLocationFab.visibility = mode.locationFabVisibility
         binding.addFab.visibility = mode.mAddFabVisibility
         binding.recyclerView.visibility = mode.recyclerViewVisibility
-//        binding.showDataFab.visibility = mode.dataFabVisibility
+        binding.showDataFab.visibility = mode.dataFabVisibility
     }
 
     override fun onNewTask(task: TaskModel) {
         viewModel.insertNote(task)
+        setNotification(task.title,task.date)
     }
 
     override fun onEditTask(task: TaskModel) {
         viewModel.updateNote(TaskModel(task.id,task.title,task.desc,task.date))
+        setNotification(task.title,task.date)
+    }
+
+    private fun setNotification(title: String, date: String){
+        val time = convertStringToDate(date)?.time
+        val currentTimeMillis = System.currentTimeMillis()
+        val timeDelay = time?.minus(currentTimeMillis)?.div(1000)
+        timeDelay?.let { createWorkRequest(title, timeDelay)  }
     }
 }

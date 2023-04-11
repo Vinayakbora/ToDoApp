@@ -31,8 +31,6 @@ j
 dapp/src/main/java/com/example/todoapp/ui/onBoardingViewPager/activity/OnBoardingViewPagerActivity.kt,4/0/40a9a6b3fca690e82b4eba644d3646e726df20cd
 ’
 bapp/src/main/java/com/example/todoapp/ui/onBoardingViewPager/adapter/OnBoardingViewPagerAdapter.kt,a/4/a462bcce1088d75f2d37c678aa0b85ccb716fe6b
-m
-=app/src/main/java/com/example/todoapp/utils/DateConversion.kt,6/a/6a775814fda0d52defb0bcbd766067d9e3fce8b0
 ”
 dapp/src/main/java/com/example/todoapp/ui/onBoardingViewPager/fragment/OnBoardingViewPagerFragment.kt,2/1/21dd93a9aa88ca6466cd6b3d09e02e7a19cd7caf
 u
@@ -51,8 +49,6 @@ j
 ^app/src/main/java/com/example/todoapp/apiresponse/data/repository/PersonalizationRepository.kt,7/1/714ff9b0880cee3ecae4c96f585cde9dadb8afc0
 ‡
 Wapp/src/main/java/com/example/todoapp/apiresponse/viewmodel/PersonalizationViewModel.kt,9/5/951fba566bf7db252581b4bb34dbb364d9eaa67a
-g
-7app/src/main/java/com/example/todoapp/data/TaskModel.kt,d/3/d3503858ec061312c697b87a32dc54703c5af900
 t
 Dapp/src/main/java/com/example/todoapp/ui/home/adapter/TaskAdapter.kt,7/9/79fc01bfaa7c1d58262fe5a889f4d9a042fd1966
 e
@@ -61,5 +57,17 @@ x
 Happ/src/main/java/com/example/todoapp/ui/home/viewmodel/TaskViewModel.kt,f/9/f9a065bc0d0092e76e9cf9ba226a41b446194713
 l
 <app/src/main/java/com/example/todoapp/data/TaskRepository.kt,b/b/bb1c11118c3e2820da53fe3fb5de75f63ddcafcc
+
+Qapp/src/main/java/com/example/todoapp/ui/onBoarding/activity/SigningUpActivity.kt,3/7/37d12e98c79e20bf8d1a848e2629990f6beb6a30
+n
+>app/src/main/java/com/example/todoapp/utils/LoginPreference.kt,6/c/6c46e196080c904d705d92f765ab5c6ca5cf35ad
 e
 5app/src/main/java/com/example/todoapp/utils/UIMode.kt,3/9/39fadc4b7c6ee66b956c7d93c290719b1fcd7a36
+n
+>app/src/main/java/com/example/todoapp/utils/SortAlertDialog.kt,9/7/971b6a8e6cbc03406a38e33e289748268cc08157
+f
+6app/src/main/java/com/example/todoapp/utils/Sorting.kt,6/5/65341031969e2d53d81466ba7969f3b21e78f7c0
+g
+7app/src/main/java/com/example/todoapp/data/TaskModel.kt,d/3/d3503858ec061312c697b87a32dc54703c5af900
+m
+=app/src/main/java/com/example/todoapp/utils/DateConversion.kt,6/a/6a775814fda0d52defb0bcbd766067d9e3fce8b0

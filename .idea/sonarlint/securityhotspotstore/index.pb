@@ -9,8 +9,6 @@ S
 bapp/src/main/java/com/example/todoapp/ui/onBoardingViewPager/adapter/OnBoardingViewPagerAdapter.kt,a/4/a462bcce1088d75f2d37c678aa0b85ccb716fe6b
 î
 dapp/src/main/java/com/example/todoapp/ui/onBoardingViewPager/activity/OnBoardingViewPagerActivity.kt,4/0/40a9a6b3fca690e82b4eba644d3646e726df20cd
-m
-=app/src/main/java/com/example/todoapp/utils/DateConversion.kt,6/a/6a775814fda0d52defb0bcbd766067d9e3fce8b0
 j
 :app/src/main/java/com/example/todoapp/ui/FormValidation.kt,9/d/9dc830385a8a68c78e1321e2ecc7de883aa76ade
 Å
@@ -51,8 +49,6 @@ h
 8app/src/main/java/com/example/todoapp/HiltApplication.kt,6/1/61fbc4aeefa98f64a8af4343424e665203eea426
 j
 :app/src/main/java/com/example/todoapp/data/TaskDatabase.kt,2/a/2a24c719ded40b715ad78888793038c178902ad7
-g
-7app/src/main/java/com/example/todoapp/data/TaskModel.kt,d/3/d3503858ec061312c697b87a32dc54703c5af900
 t
 Dapp/src/main/java/com/example/todoapp/ui/home/adapter/TaskAdapter.kt,7/9/79fc01bfaa7c1d58262fe5a889f4d9a042fd1966
 e
@@ -61,5 +57,17 @@ l
 <app/src/main/java/com/example/todoapp/data/TaskRepository.kt,b/b/bb1c11118c3e2820da53fe3fb5de75f63ddcafcc
 x
 Happ/src/main/java/com/example/todoapp/ui/home/viewmodel/TaskViewModel.kt,f/9/f9a065bc0d0092e76e9cf9ba226a41b446194713
+Å
+Qapp/src/main/java/com/example/todoapp/ui/onBoarding/activity/SigningUpActivity.kt,3/7/37d12e98c79e20bf8d1a848e2629990f6beb6a30
+n
+>app/src/main/java/com/example/todoapp/utils/LoginPreference.kt,6/c/6c46e196080c904d705d92f765ab5c6ca5cf35ad
 e
 5app/src/main/java/com/example/todoapp/utils/UIMode.kt,3/9/39fadc4b7c6ee66b956c7d93c290719b1fcd7a36
+n
+>app/src/main/java/com/example/todoapp/utils/SortAlertDialog.kt,9/7/971b6a8e6cbc03406a38e33e289748268cc08157
+f
+6app/src/main/java/com/example/todoapp/utils/Sorting.kt,6/5/65341031969e2d53d81466ba7969f3b21e78f7c0
+g
+7app/src/main/java/com/example/todoapp/data/TaskModel.kt,d/3/d3503858ec061312c697b87a32dc54703c5af900
+m
+=app/src/main/java/com/example/todoapp/utils/DateConversion.kt,6/a/6a775814fda0d52defb0bcbd766067d9e3fce8b0
