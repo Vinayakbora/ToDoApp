@@ -29,6 +29,7 @@ class FormValidation(ctx: Context) {
     fun validatePhone(phoneNumber: String, value: EditText): Boolean{
         return if (phoneNumber.isNotEmpty()) {
             if (Pattern.matches(phoneRegex, phoneNumber)) {
+                loginStatus.saveContact(phoneNumber)
                 true
             } else {
                 value.error = "Please enter a valid Phone number"
@@ -42,10 +43,12 @@ class FormValidation(ctx: Context) {
 
     fun validateDOB(dob: String,value: EditText): Boolean{
         return if (dob.isNotEmpty()) {
+            loginStatus.saveDOB(dob)
             true
         } else {
             value.error = "D.O.B cannot be empty"
             false
         }
     }
+
 }

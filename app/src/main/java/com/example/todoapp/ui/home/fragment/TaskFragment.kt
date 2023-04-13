@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import com.example.todoapp.R
@@ -28,6 +29,8 @@ class TaskFragment : Fragment() {
     private lateinit var editDescText: String
     private lateinit var editDocText: String
     private var editPos: Int = 0
+    private var isTitleValidated: Boolean = false
+    private var isDOCValidated: Boolean = false
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -79,22 +82,29 @@ class TaskFragment : Fragment() {
         }
 
         binding.doneBtn.setOnClickListener {
-            editTitleText =  binding.titleText.text.toString()
-            editDescText = binding.descriptionText.text.toString()
-            editDocText = binding.dateOfCompletionText.text.toString()
-            ediTaskModel?.let { editPos=it.id }
+
+            isTitleValidated = validateTitleText(binding.titleText.text.toString(),binding.titleText)
+            isDOCValidated = validateDOCText(binding.dateOfCompletionText.text.toString(),binding.dateOfCompletionText)
+
+            if(isTitleValidated && isDOCValidated){
+                editTitleText =  binding.titleText.text.toString()
+                editDescText = binding.descriptionText.text.toString()
+                editDocText = binding.dateOfCompletionText.text.toString()
+                ediTaskModel?.let { editPos=it.id }
+
+                if (modeEditing) {
+                    ediTaskModel?.let {
+                        listener?.onEditTask(TaskModel(editPos,editTitleText, editDescText, editDocText))
+                    }
+                }
+                else
+                    listener?.onNewTask(TaskModel(0,editTitleText, editDescText, editDocText))
+                activity?.onBackPressedDispatcher?.onBackPressed()
+            }
 
             val imm: InputMethodManager = requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow( binding.doneBtn.windowToken, 0)
 
-            if (modeEditing) {
-              ediTaskModel?.let {
-                  listener?.onEditTask(TaskModel(editPos,editTitleText, editDescText, editDocText))
-              }
-            }
-            else
-                listener?.onNewTask(TaskModel(0,editTitleText, editDescText, editDocText))
-            activity?.onBackPressedDispatcher?.onBackPressed()
         }
         return binding.root
     }
@@ -137,5 +147,23 @@ class TaskFragment : Fragment() {
         )
         datePickerDialog.datePicker.minDate = c.timeInMillis
         datePickerDialog.show()
+    }
+
+    private fun validateTitleText(title: String, value: EditText): Boolean{
+        return if (title.isNotEmpty()) {
+            true
+        } else {
+            value.error = "Title cannot be blank"
+            false
+        }
+    }
+
+    private fun validateDOCText(doc: String, value: EditText): Boolean{
+        return if (doc.isNotEmpty()) {
+            true
+        } else {
+            value.error = "Completion Date cannot be empty"
+            false
+        }
     }
 }

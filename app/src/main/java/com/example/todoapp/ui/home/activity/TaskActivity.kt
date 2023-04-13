@@ -17,6 +17,7 @@ import com.example.todoapp.ui.home.adapter.TaskAdapter
 import com.example.todoapp.ui.home.viewmodel.TaskViewModel
 import com.example.todoapp.ui.home.fragment.TaskFragment
 import com.example.todoapp.ui.onBoarding.activity.SigningUpActivity
+import com.example.todoapp.ui.profile.ProfileActivity
 import com.example.todoapp.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.concurrent.TimeUnit
@@ -56,7 +57,8 @@ class TaskActivity : AppCompatActivity(), TaskFragment.NewTaskListener {
         }
 
         binding.filter.setOnClickListener {
-            SortAlertDialog(taskAdapter).showSortTypes(this)
+//            SortAlertDialog(taskAdapter).showSortTypes(this)
+            ProfileActivity.openProfileActivity(this)
         }
 
         binding.addFab.setOnClickListener {
@@ -106,6 +108,6 @@ class TaskActivity : AppCompatActivity(), TaskFragment.NewTaskListener {
         val time = convertStringToDate(date)?.time
         val currentTimeMillis = System.currentTimeMillis()
         val timeDelay = time?.minus(currentTimeMillis)?.div(1000)
-        timeDelay?.let { createWorkRequest(title, timeDelay)  }
+        timeDelay?.let { createWorkRequest(title, timeDelay-30)  }
     }
 }
