@@ -8,9 +8,11 @@ import androidx.core.app.ActivityCompat
 import com.example.todoapp.ui.profile.ProfileActivity
 import com.google.android.gms.location.FusedLocationProviderClient
 import java.util.*
+import java.util.concurrent.CompletableFuture
 
 @Suppress("DEPRECATION")
 class FetchLocation {
+
     companion object {
         fun getLastLocation(
             activity: ProfileActivity,
@@ -18,7 +20,8 @@ class FetchLocation {
             fineLocation: String,
             coarseLocation: String,
             fusedLocationClient: FusedLocationProviderClient,
-        ) {
+        ) : CompletableFuture<String> {
+            val future = CompletableFuture<String>()
             val permissions = arrayOf(fineLocation, coarseLocation)
             if (ActivityCompat.checkSelfPermission(ctx,fineLocation) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(ctx,coarseLocation) != PackageManager.PERMISSION_GRANTED
@@ -32,11 +35,13 @@ class FetchLocation {
                     val longitude = location.longitude
                     val geocoder = Geocoder(ctx, Locale.getDefault())
                     val addresses = geocoder.getFromLocation(latitude, longitude, 1)
-                    val geoResponse = addresses?.get(0)
-                    activity.displayTextView(geoResponse)
-
+                    val city = addresses?.get(0)?.locality.toString()
+                    future.complete(city)
+                } else {
+                    future.complete("Assam")
                 }
             }
+            return future
         }
     }
 }

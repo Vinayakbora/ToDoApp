@@ -4,7 +4,6 @@ import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.location.Address
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -14,6 +13,9 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -34,8 +36,7 @@ import java.util.*
 
 class ProfileActivity : ComponentActivity() {
 
-    private var city: String = ""
-
+    private var city = mutableStateOf("")
     companion object {
         fun openProfileActivity(ctx: Context) {
             ctx.startActivity(Intent(ctx, ProfileActivity::class.java))
@@ -48,7 +49,19 @@ class ProfileActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        displayTextView(Address(Locale.getDefault()))
+
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+
+       FetchLocation.getLastLocation(
+            this,
+            this,
+            fineLocation,
+            coarseLocation,
+            fusedLocationClient
+        ).thenAccept{
+            city.value=it
+       }
+
         setContent {
             ToDoAppTheme {
                 Surface(
@@ -58,20 +71,6 @@ class ProfileActivity : ComponentActivity() {
                 }
             }
         }
-
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-
-        FetchLocation.getLastLocation(
-            this,
-            this,
-            fineLocation,
-            coarseLocation,
-            fusedLocationClient
-        )
-    }
-
-    fun displayTextView(address: Address?) {
-        city = address?.locality.toString()
     }
 
     @Deprecated("Deprecated in Java")
@@ -90,7 +89,9 @@ class ProfileActivity : ComponentActivity() {
                         fineLocation,
                         coarseLocation,
                         fusedLocationClient
-                    )
+                    ).thenAccept{
+                        city.value=it
+                    }
                 }
             }
         }
@@ -98,7 +99,7 @@ class ProfileActivity : ComponentActivity() {
 }
 
 @Composable
-fun Profile(ctx: Context, city: String) {
+fun Profile(ctx: Context, city: MutableState<String>) {
     val userInfo = LoginPreference(ctx)
     val userName = userInfo.getName()
     val contact = userInfo.getContact()
@@ -181,7 +182,7 @@ fun Profile(ctx: Context, city: String) {
                     modifier = Modifier.padding(top = 50.dp, start = 30.dp)
                 )
                 Text(
-                    text = city,
+                    text = city.value,
                     color = Color.Black,
                     style = MaterialTheme.typography.h6,
                     fontSize = 25.sp,
@@ -199,7 +200,9 @@ fun DefaultPreview() {
         Surface(
             modifier = Modifier.fillMaxSize(), color = PrimaryContainer
         ) {
-            Profile(ctx = LocalContext.current, "Pune")
+            Profile(ctx = LocalContext.current, remember {
+                mutableStateOf("")
+            })
         }
     }
 }
