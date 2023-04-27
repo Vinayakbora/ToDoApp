@@ -43,16 +43,10 @@ m
 =app/src/main/java/com/example/todoapp/utils/ReminderWorker.kt,c/c/ccbad257165af28c1326a2e6719d86e325045427
 Å
 Qapp/src/main/java/com/example/todoapp/ui/onBoarding/activity/SigningUpActivity.kt,3/7/37d12e98c79e20bf8d1a848e2629990f6beb6a30
-<
-build.gradle,f/0/f07866736216be0ee2aba49e392191aeae700a35
-@
-app/build.gradle,f/4/f4a01d6a4fcb971362ec00a83903fd3902f52164
 r
 Bapp/src/main/java/com/example/todoapp/ui/profile/ui/theme/Color.kt,6/d/6d3279adab5f1f4abfe27a8268b867350acfd883
 j
 :app/src/main/java/com/example/todoapp/ui/FormValidation.kt,9/d/9dc830385a8a68c78e1321e2ecc7de883aa76ade
-n
->app/src/main/java/com/example/todoapp/utils/LoginPreference.kt,6/c/6c46e196080c904d705d92f765ab5c6ca5cf35ad
 q
 Aapp/src/main/java/com/example/todoapp/utils/NotificationHelper.kt,4/1/4108e3e2c0be6d9cf6d9ff38f7c101056b723ba5
 r
