@@ -7,8 +7,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_3"
+    android:background="@drawable/space_jelly"
     tools:context=".ui.onBoarding.activity.SigningUpActivity">
+
 
     <ImageView
         android:id="@+id/imageView"
@@ -118,7 +119,7 @@
         android:fontFamily="@font/montserrat_bold_italic"
         android:backgroundTint="@color/black"
         android:text="@string/sign_in"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textColor="#ffffff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -26,6 +26,7 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -40,7 +41,7 @@ import java.util.*
 
 class ProfileActivity : ComponentActivity() {
 
-    private var city = mutableStateOf(arrayOf("",""))
+    private var city = mutableStateOf(arrayOf("", "",""))
 
     companion object {
         fun openProfileActivity(ctx: Context) {
@@ -57,15 +58,11 @@ class ProfileActivity : ComponentActivity() {
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
-       FetchLocation.getLastLocation(
-            this,
-            this,
-            fineLocation,
-            coarseLocation,
-            fusedLocationClient
-        ).thenAccept{
-            city.value=it
-       }
+        FetchLocation.getLastLocation(
+            this, this, fineLocation, coarseLocation, fusedLocationClient
+        ).thenAccept {
+            city.value = it
+        }
 
         setContent {
             ToDoAppTheme {
@@ -89,13 +86,9 @@ class ProfileActivity : ComponentActivity() {
             0 -> {
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                     FetchLocation.getLastLocation(
-                        this,
-                        this,
-                        fineLocation,
-                        coarseLocation,
-                        fusedLocationClient
-                    ).thenAccept{
-                        city.value=it
+                        this, this, fineLocation, coarseLocation, fusedLocationClient
+                    ).thenAccept {
+                        city.value = it
                     }
                 }
             }
@@ -111,8 +104,7 @@ fun Profile(ctx: Context, city: MutableState<Array<String>>) {
     val dob = userInfo.getDOB()
 
     Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
+        modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center
     ) {
         Image(
             painter = painterResource(id = R.drawable.space),
@@ -121,7 +113,8 @@ fun Profile(ctx: Context, city: MutableState<Array<String>>) {
             modifier = Modifier.fillMaxSize()
         )
         Box(
-            modifier = Modifier.padding(horizontal = 30.dp, vertical = 100.dp)
+            modifier = Modifier
+                .padding(horizontal = 30.dp, vertical = 80.dp)
                 .shadow(20.dp, shape = RoundedCornerShape(13.dp)),
             contentAlignment = Alignment.Center,
         ) {
@@ -129,8 +122,7 @@ fun Profile(ctx: Context, city: MutableState<Array<String>>) {
                 modifier = Modifier.fillMaxSize(),
                 elevation = 10.dp,
                 shape = RoundedCornerShape(10.dp),
-            )
-            {
+            ) {
                 Image(
                     painter = painterResource(id = R.drawable.space),
                     contentDescription = null,
@@ -140,7 +132,9 @@ fun Profile(ctx: Context, city: MutableState<Array<String>>) {
                     Image(
                         painter = painterResource(R.drawable.account),
                         contentDescription = "Profile Picture",
-                        modifier = Modifier.padding(top = 20.dp, start = 50.dp),
+                        modifier = Modifier
+                            .padding(top = 20.dp)
+                            .align(Alignment.CenterHorizontally),
                         colorFilter = ColorFilter.tint(Color.White)
                     )
 
@@ -155,9 +149,11 @@ fun Profile(ctx: Context, city: MutableState<Array<String>>) {
                         Text(
                             text = userName,
                             color = Color.White,
+                            maxLines = 2,
+                            overflow = TextOverflow.Ellipsis,
                             style = MaterialTheme.typography.h6,
                             fontSize = 20.sp,
-                            modifier = Modifier.padding(top = 50.dp,start = 10.dp)
+                            modifier = Modifier.padding(top = 50.dp, start = 10.dp)
                         )
                     }
 
@@ -174,7 +170,7 @@ fun Profile(ctx: Context, city: MutableState<Array<String>>) {
                             color = Color.White,
                             style = MaterialTheme.typography.h6,
                             fontSize = 20.sp,
-                            modifier = Modifier.padding(top = 30.dp,start = 10.dp)
+                            modifier = Modifier.padding(top = 30.dp, start = 10.dp)
                         )
                     }
 
@@ -191,7 +187,7 @@ fun Profile(ctx: Context, city: MutableState<Array<String>>) {
                             color = Color.White,
                             style = MaterialTheme.typography.h6,
                             fontSize = 20.sp,
-                            modifier = Modifier.padding(top = 30.dp,start = 10.dp)
+                            modifier = Modifier.padding(top = 30.dp, start = 10.dp)
                         )
                     }
 
@@ -204,18 +200,13 @@ fun Profile(ctx: Context, city: MutableState<Array<String>>) {
                             modifier = Modifier.padding(top = 30.dp, start = 30.dp)
                         )
                         Text(
-                            text = "${city.value[0]},",
+                            text = "${city.value[0]}, ${city.value[1]}, ${city.value[2]}",
                             color = Color.White,
+                            maxLines = 3,
+                            overflow = TextOverflow.Ellipsis,
                             style = MaterialTheme.typography.h6,
                             fontSize = 20.sp,
-                            modifier = Modifier.padding(top = 30.dp,start = 10.dp)
-                        )
-                        Text(
-                            text = city.value[1],
-                            color = Color.White,
-                            style = MaterialTheme.typography.h6,
-                            fontSize = 20.sp,
-                            modifier = Modifier.padding(top = 30.dp,start = 10.dp)
+                            modifier = Modifier.padding(top = 30.dp, start = 10.dp)
                         )
                     }
                 }
@@ -232,7 +223,7 @@ fun DefaultPreview() {
             modifier = Modifier.fillMaxSize(), color = PrimaryContainer
         ) {
             Profile(ctx = LocalContext.current, remember {
-                mutableStateOf(arrayOf("",""))
+                mutableStateOf(arrayOf("", "", ""))
             })
         }
     }

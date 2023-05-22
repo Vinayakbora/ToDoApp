@@ -27,13 +27,22 @@
                 android:id="@+id/filter"
                 android:layout_width="39dp"
                 android:layout_height="32dp"
-                android:layout_marginStart="140dp"
+                android:layout_marginStart="100dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
                 android:contentDescription="@string/filter"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/filter_list" />
+
+            <ImageView
+                android:id="@+id/profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:contentDescription="@string/logout"
+                app:tint="@color/white"
+                app:srcCompat="@drawable/profile" />
 
             <ImageView
                 android:id="@+id/logoutBtn"

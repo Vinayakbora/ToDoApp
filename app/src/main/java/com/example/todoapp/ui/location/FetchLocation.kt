@@ -35,11 +35,12 @@ class FetchLocation {
                     val longitude = location.longitude
                     val geocoder = Geocoder(ctx, Locale.getDefault())
                     val addresses = geocoder.getFromLocation(latitude, longitude, 1)
+                    val state = addresses?.get(0)?.adminArea.toString()
                     val city = addresses?.get(0)?.locality.toString()
                     val pinCode = addresses?.get(0)?.postalCode.toString()
-                    future.complete(arrayOf(city,pinCode))
+                    future.complete(arrayOf(city,state,pinCode))
                 } else {
-                    future.complete(arrayOf(arrayOf("Assam","Goa").contentDeepToString()))
+                    future.complete(arrayOf(arrayOf("Guwahati","Assam","781006").contentDeepToString()))
                 }
             }
             return future

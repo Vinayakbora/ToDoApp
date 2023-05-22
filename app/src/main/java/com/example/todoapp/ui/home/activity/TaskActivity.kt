@@ -57,7 +57,10 @@ class TaskActivity : AppCompatActivity(), TaskFragment.NewTaskListener {
         }
 
         binding.filter.setOnClickListener {
-//            SortAlertDialog(taskAdapter).showSortTypes(this)
+            SortAlertDialog(taskAdapter).showSortTypes(this)
+        }
+
+        binding.profile.setOnClickListener{
             ProfileActivity.openProfileActivity(this)
         }
 
