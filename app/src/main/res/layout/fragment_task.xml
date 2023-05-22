@@ -5,7 +5,6 @@
 
 <FrameLayout
     android:layout_width="match_parent"
-    android:background="@drawable/background_2"
     android:layout_height="match_parent"
     tools:context=".ui.home.fragment.TaskFragment">
 
@@ -16,10 +15,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_gravity="center_horizontal"
-        app:strokeColor="@color/black"
+        app:strokeColor="@color/blue_grotto"
         app:strokeWidth="2dp"
-        android:backgroundTint="@color/blue_green"
+        android:backgroundTint="@color/blue_grotto"
         android:text="@string/Add"
+        android:textColor="@color/white"
         android:textAllCaps="false" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -28,9 +28,9 @@
         android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
-        app:hintTextColor="@color/white"
+        app:hintTextColor="@color/blue_grotto"
         android:layout_gravity="center_horizontal"
-        android:textColorHint="@color/white">
+        android:textColorHint="@color/blue_grotto">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/titleText"
@@ -41,7 +41,7 @@
             android:inputType="textMultiLine"
             android:gravity="top"
             android:lines="1"
-            android:textColor="@color/white"
+            android:textColor="@color/blue_grotto"
             android:textCursorDrawable="@null" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -52,9 +52,9 @@
         android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="220dp"
-        app:hintTextColor="@color/white"
+        app:hintTextColor="@color/blue_grotto"
         android:layout_gravity="center_horizontal"
-        android:textColorHint="@color/white">
+        android:textColorHint="@color/blue_grotto">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/descriptionText"
@@ -65,7 +65,7 @@
             android:lines="10"
             android:hint="@string/description"
             android:inputType="textMultiLine"
-            android:textColor="@color/white"
+            android:textColor="@color/blue_grotto"
             android:textCursorDrawable="@null" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -78,13 +78,13 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="500dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:hintTextColor="@color/white"
+        app:hintTextColor="@color/blue_grotto"
         android:textAlignment="center"
         app:startIconDrawable="@drawable/calender_black"
-        app:startIconTint="@color/white"
+        app:startIconTint="@color/blue_grotto"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/numberText1"
-        android:textColorHint="@color/white"
+        android:textColorHint="@color/blue_grotto"
         android:autofillHints=""
         android:inputType="date">
 
@@ -99,7 +99,7 @@
             android:fontFamily="@font/montserrat_medium_italic"
             android:gravity="center_horizontal"
             android:hint="@string/task_completion_date"
-            android:textColor="@color/white" />
+            android:textColor="@color/blue_grotto" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

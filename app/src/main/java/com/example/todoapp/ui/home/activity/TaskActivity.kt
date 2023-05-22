@@ -93,6 +93,7 @@ class TaskActivity : AppCompatActivity(), TaskFragment.NewTaskListener {
     }
 
     fun toggleUI(mode: UIMode) {
+        binding.activityToolbar.visibility = mode.activityToolBarVisibility
         binding.addFab.visibility = mode.mAddFabVisibility
         binding.recyclerView.visibility = mode.recyclerViewVisibility
     }
